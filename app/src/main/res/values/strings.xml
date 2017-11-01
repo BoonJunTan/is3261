@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">OneAndroid</string>
+
+    <string name="home_nav">Home</string>
+    <string name="task_nav">Task</string>
+    <string name="challenge_nav">Leaderboard</string>
+    <string name="profile_nav">Profile</string>
+
+    <string name="home_fragment">Hello Home fragment</string>
+    <string name="task_fragment">Hello Task fragment</string>
+    <string name="leaderboard_fragment">Hello Leaderboard fragment</string>
+    <string name="profile_fragment">Hello Profile fragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
