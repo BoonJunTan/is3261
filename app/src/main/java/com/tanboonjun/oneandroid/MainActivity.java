@@ -10,8 +10,8 @@ import android.view.MenuItem;
 
 public class MainActivity extends Activity {
 
+    // For Bottom Nav Bar
     private static final String SELECTED_ITEM = "arg_selected_item";
-
     private BottomNavigationView mBottomNav;
     private int mSelectedItem;
 
@@ -19,7 +19,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         mBottomNav = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);

@@ -5,4 +5,12 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
     <color name="gray">#a2a2a2</color>
+
+    <color name="backgroundTop">#444a5a</color>
+    <color name="backgroundBottom">#f5f6fa</color>
+    <color name="header_green">#b3d577</color>
+
+    <color name="item_name_color">#aab4ba</color>
+    <color name="item_info_color">#bdc5cc</color>
+    <color name="item_separator_color">#c8c9cc</color>
 </resources>
