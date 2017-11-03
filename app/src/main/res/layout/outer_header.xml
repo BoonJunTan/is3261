@@ -23,19 +23,41 @@
     <TextView
         android:id="@+id/header_text_1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="start"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textSize="@dimen/header_title1_text_size"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textSize="@dimen/header_title_text_size"
         android:textColor="@android:color/white"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginRight="16dp"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp" />
+
+    <FrameLayout
+        android:id="@+id/header_footer"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/white_corners_bottom"
+        app:layout_constraintLeft_toLeftOf="@+id/header_middle"
+        app:layout_constraintRight_toRightOf="@+id/header_middle"
+        app:layout_constraintTop_toBottomOf="@+id/header_middle">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/scroll_down_message"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/header_footer_text_size" />
+
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
 

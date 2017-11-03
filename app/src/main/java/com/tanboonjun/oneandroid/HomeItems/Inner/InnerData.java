@@ -2,9 +2,9 @@ package com.tanboonjun.oneandroid.HomeItems.Inner;
 
 public class InnerData {
 
-    public final String title;
+    public final String subTitle;
 
-    public InnerData(String title) {
-        this.title = title;
+    public InnerData(String subTitle) {
+        this.subTitle = subTitle;
     }
 }

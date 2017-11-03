@@ -3,8 +3,10 @@ package com.tanboonjun.oneandroid.HomeItems.Outer;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -44,6 +46,9 @@ public class OuterItem extends HeaderItem {
 
     private final TextView mHeaderCaption1;
 
+    private final View mMiddle;
+    private final View mFooter;
+
     private final List<View> mMiddleCollapsible = new ArrayList<>(2);
 
     private final int m10dp;
@@ -63,6 +68,9 @@ public class OuterItem extends HeaderItem {
 
         mHeaderCaption1 = (TextView) itemView.findViewById(R.id.header_text_1);
 
+        mMiddle = itemView.findViewById(R.id.header_middle);
+        mFooter = itemView.findViewById(R.id.header_footer);
+
         // Init RecyclerView
         mRecyclerView = (InnerRecyclerView) itemView.findViewById(R.id.recycler_view);
         mRecyclerView.setRecycledViewPool(pool);
@@ -76,7 +84,7 @@ public class OuterItem extends HeaderItem {
 
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                //onItemScrolled(recyclerView, dx, dy);
+                onItemScrolled(recyclerView, dx, dy);
             }
         });
 
@@ -117,7 +125,7 @@ public class OuterItem extends HeaderItem {
         mRecyclerView.setLayoutManager(new InnerLayoutManager());
         ((InnerAdapter)mRecyclerView.getAdapter()).addData(tail);
 
-        final String title1 = header.title + "?";
+        final String title1 = header.subTitle;
         mHeaderCaption1.setText(title1);
     }
 
@@ -135,5 +143,20 @@ public class OuterItem extends HeaderItem {
         final int height = child0.getHeight();
         final float y = Math.max(0, child0.getY());
         return y / height;
+    }
+
+    private void onItemScrolled(RecyclerView recyclerView, int dx, int dy) {
+        final float ratio = computeRatio(recyclerView);
+
+        final float footerRatio = Math.max(0, Math.min(FOOTER_RATIO_START, ratio) - FOOTER_RATIO_DIFF) / FOOTER_RATIO_MAX;
+        final float middleRatio = Math.max(0, Math.min(MIDDLE_RATIO_START, ratio) - MIDDLE_RATIO_DIFF) / MIDDLE_RATIO_MAX;
+
+        ViewCompat.setPivotY(mFooter, 0);
+        ViewCompat.setScaleY(mFooter, footerRatio);
+        ViewCompat.setAlpha(mFooter, footerRatio);
+
+        final ViewGroup.LayoutParams lp = mMiddle.getLayoutParams();
+        lp.height = m120dp - (int)(m10dp * (1f - middleRatio));
+        mMiddle.setLayoutParams(lp);
     }
 }

@@ -21,7 +21,7 @@ public class InnerItem extends com.ramotion.garlandview.inner.InnerItem {
 
         mInnerLayout = ((ViewGroup)itemView).getChildAt(0);
 
-        mHeader = (TextView) itemView.findViewById(R.id.tv_header);
+        mHeader = (TextView) itemView.findViewById(R.id.header_text_1);
 
         mInnerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +47,7 @@ public class InnerItem extends com.ramotion.garlandview.inner.InnerItem {
     void setContent(InnerData data) {
         mInnerData = data;
 
-        mHeader.setText(data.title);
+        mHeader.setText(data.subTitle);
     }
 
 }

@@ -15,6 +15,16 @@
 
     <!-- Under Home Fragment -->
     <string name="welcome_text">Hi again Dyllan Tan!</string>
-    <string name="todo_message">What do you want to train today?</string>
+    <string name="todo_message">What do you want to know today?</string>
+    <string name="scroll_down_message">Scroll Down for Sub-Topic</string>
+    <string name="tap_message">Tap to find out more!</string>
+
+    <string name="transition_card" translatable="false">card</string>
+    <string name="transition_background" translatable="false">background</string>
+    <string name="transition_avatar_border" translatable="false">avatar_border</string>
+
+    <string name="details_task">ADD TASK</string>
+    <string name="details_close">CLOSE</string>
+    <string name="details_details">MORE INFO</string>
 
 </resources>
