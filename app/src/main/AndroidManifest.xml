@@ -19,7 +19,7 @@
         </activity>
         <activity android:name=".HomeItems.Details.DetailsActivity"
             android:screenOrientation="portrait">
-            
+
         </activity>
     </application>
 

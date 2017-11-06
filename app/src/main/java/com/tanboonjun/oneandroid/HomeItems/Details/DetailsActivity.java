@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.View;
+import android.widget.TextView;
 
 import com.tanboonjun.oneandroid.MainActivity;
 import com.tanboonjun.oneandroid.R;
@@ -41,6 +42,8 @@ public class DetailsActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+
+        ((TextView) findViewById(R.id.tv_title)).setText(getIntent().getStringExtra(BUNDLE_SUBTITLE));
 
         generateData();
     }

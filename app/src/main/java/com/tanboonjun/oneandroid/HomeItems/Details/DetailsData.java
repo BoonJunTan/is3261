@@ -1,6 +1,5 @@
 package com.tanboonjun.oneandroid.HomeItems.Details;
 
-
 import android.os.Parcel;
 import android.os.Parcelable;
 

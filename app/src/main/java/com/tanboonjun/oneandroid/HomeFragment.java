@@ -43,8 +43,13 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         generateData();
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -85,6 +90,7 @@ public class HomeFragment extends Fragment {
         ((TailLayoutManager)rv.getLayoutManager()).setPageTransformer(new HeaderTransformer());
         rv.setAdapter(new OuterAdapter(data));
 
+        rv.setOnFlingListener(null);
         new TailSnapHelper().attachToRecyclerView(rv);
     }
 
