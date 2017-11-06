@@ -10,7 +10,7 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/home"
+            android:src="@drawable/android_background"
             android:scaleType="centerCrop"
             android:transitionName="@string/transition_background"
             app:layout_constraintRight_toRightOf="parent"
@@ -77,6 +77,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:text="Sub Title"
             android:textSize="24sp"
             android:maxLines="1"
             android:ellipsize="end"
@@ -89,7 +90,7 @@
             android:layout_marginRight="32dp" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
+            android:id="@+id/recycler_view_subSubTitle"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -108,9 +109,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="16dp"
-            app:layout_constraintLeft_toLeftOf="@+id/recycler_view"
+            app:layout_constraintLeft_toLeftOf="@+id/recycler_view_subSubTitle"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_subSubTitle"
             android:id="@+id/linearLayout3">
 
             <ImageView
@@ -137,11 +138,11 @@
             android:clickable="true"
             android:onClick="onCloseClick"
             android:layout_marginLeft="0dp"
-            app:layout_constraintLeft_toLeftOf="@+id/recycler_view"
+            app:layout_constraintLeft_toLeftOf="@+id/recycler_view_subSubTitle"
             android:layout_marginRight="0dp"
-            app:layout_constraintRight_toRightOf="@+id/recycler_view"
+            app:layout_constraintRight_toRightOf="@+id/recycler_view_subSubTitle"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view">
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_subSubTitle">
 
             <ImageView
                 android:layout_width="28dp"
@@ -166,9 +167,9 @@
             android:layout_marginTop="16dp"
             android:clickable="true"
             android:onClick="onDetailsClick"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view_subSubTitle"
             android:layout_marginRight="16dp"
-            app:layout_constraintRight_toRightOf="@+id/recycler_view">
+            app:layout_constraintRight_toRightOf="@+id/recycler_view_subSubTitle">
 
             <ImageView
                 android:layout_width="28dp"

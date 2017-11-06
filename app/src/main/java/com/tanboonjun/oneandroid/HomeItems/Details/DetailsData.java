@@ -25,7 +25,7 @@ public class DetailsData implements Parcelable {
         parcel.writeString(title);
     }
 
-    public static final Creator<DetailsData> CREATOR = new Creator<DetailsData>() {
+    public static final Parcelable.Creator<DetailsData> CREATOR = new Parcelable.Creator<DetailsData>() {
         @Override
         public DetailsData createFromParcel(Parcel parcel) {
             return new DetailsData(parcel);

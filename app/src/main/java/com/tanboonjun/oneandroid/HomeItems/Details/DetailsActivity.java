@@ -51,7 +51,7 @@ public class DetailsActivity extends Activity {
             mListData.add(new DetailsData(innerData[i]));
         }
 
-        ((RecyclerView)findViewById(R.id.recycler_view)).setAdapter(new DetailsAdapter(mListData));
+        ((RecyclerView)findViewById(R.id.recycler_view_subSubTitle)).setAdapter(new DetailsAdapter(mListData));
     }
 
     public void onCloseClick(View v) {
