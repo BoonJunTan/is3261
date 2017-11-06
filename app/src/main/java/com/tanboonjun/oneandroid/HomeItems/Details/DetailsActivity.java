@@ -10,7 +10,7 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
 
-import com.tanboonjun.oneandroid.MainActivity;
+import com.tanboonjun.oneandroid.HomeItems.MoreInfo.MoreInfoActivity;
 import com.tanboonjun.oneandroid.R;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class DetailsActivity extends Activity {
 
     private final ArrayList<DetailsData> mListData = new ArrayList<>();
 
-    public static void start(final MainActivity activity,
+    public static void start(final Activity activity,
                              final String subtitle,
                              final View card) {
         Intent starter = new Intent(activity, DetailsActivity.class);
@@ -50,6 +50,7 @@ public class DetailsActivity extends Activity {
 
     public void generateData() {
         String[] innerData = {"Constraints overview", "Add ConstraintLayout to your project", "Add a constraint", "Adjust the constraint bias", "Adjust the view size", "Adjust the view margins", "Control linear groups with a chain", "Automatically create constraints"};
+
         for (int i = 0; i < innerData.length; i++) {
             mListData.add(new DetailsData(innerData[i]));
         }
@@ -61,17 +62,8 @@ public class DetailsActivity extends Activity {
         super.onBackPressed();
     }
 
-    public void onDetailsClick(View v) {
-//        ProfileActivity.start(this,
-//                getIntent().getStringExtra(BUNDLE_AVATAR_URL),
-//                getIntent().getStringExtra(BUNDLE_NAME),
-//                getIntent().getStringExtra(BUNDLE_INFO),
-//                ((TextView) findViewById(R.id.tv_status)).getText().toString(),
-//                findViewById(R.id.avatar),
-//                findViewById(R.id.card),
-//                findViewById(R.id.iv_background),
-//                findViewById(R.id.recycler_view),
-//                mListData);
+    public void onMoreInfoClick(View v) {
+        MoreInfoActivity.start(this, getIntent().getStringExtra(BUNDLE_SUBTITLE), "Test Description", findViewById(R.id.card));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             finishAfterTransition();

@@ -59,13 +59,17 @@ public class HomeFragment extends Fragment {
     }
 
     public void generateData() {
-        String[] outerDataLists = {"Best Practices for User Interface", "Best Practices for User Input"};
+        String[] outerDataLists = {"Getting Started", "Building Apps with Content Sharing", "Best Practices for User Interface", "Best Practices for User Input"};
 
         ArrayList<String[]> innerDataLists = new ArrayList<>();
-        String[] innerDataOne = {"Designing for Multiple Screens", "Build a Responsive UI with ConstraintLayout", "Adding the App Bar", "Showing Pop-Up Messages", "Creating Custom View", "Creating Backward-Compatible UIs", "Implementing Accessibility", "Managing the System UI", "Creating Apps with Material Design"};
-        String[] innerDataTwo = {"Using Touch Gestures", "Handling Keyboard Input", "Supporting Game Controllers"};
-        innerDataLists.add(innerDataOne);
-        innerDataLists.add(innerDataTwo);
+        String[] innerData1 = {"Building Your First App", "Supporting Different Devices", "Building a Dynamic UI with Fragment", "Saving Data", "Interacting with Other Apps", "Working with System Permissions"};
+        String[] innerData2 = {"Sharing Simple Data", "Sharing Files", "Sharing Files with NFC"};
+        String[] innerData3 = {"Designing for Multiple Screens", "Build a Responsive UI with ConstraintLayout", "Adding the App Bar", "Showing Pop-Up Messages", "Creating Custom View", "Creating Backward-Compatible UIs", "Implementing Accessibility", "Managing the System UI", "Creating Apps with Material Design"};
+        String[] innerData4 = {"Using Touch Gestures", "Handling Keyboard Input", "Supporting Game Controllers"};
+        innerDataLists.add(innerData1);
+        innerDataLists.add(innerData2);
+        innerDataLists.add(innerData3);
+        innerDataLists.add(innerData4);
 
         final List<List<InnerData>> outerData = new ArrayList<>();
         for (int i = 0; i < outerDataLists.length; i++) {
