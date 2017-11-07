@@ -23,8 +23,20 @@
     <string name="transition_background" translatable="false">background</string>
     <string name="transition_avatar_border" translatable="false">avatar_border</string>
 
+    <!-- Under Home -> Details -->
     <string name="details_task">ADD TASK</string>
     <string name="details_close">CLOSE</string>
     <string name="details_details">MORE INFO</string>
+
+    <!-- Under Task Fragment -->
+    <string name="new_task">New</string>
+    <string name="ongoing_task">Ongoing</string>
+    <string name="completed_task">Completed</string>
+    <string name="all_task">All</string>
+
+    <!-- Under Leaderboard Fragment -->
+
+
+    <!-- Under Profile Fragment -->
 
 </resources>
