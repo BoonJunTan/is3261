@@ -7,8 +7,9 @@
     android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
         <TextView
             android:id="@+id/table_row_title"
@@ -17,6 +18,7 @@
             android:textSize="25sp"
             android:text="TITLE"
             android:textColor="@color/colorPrimaryDark"
+            android:layout_marginTop="@dimen/dp10"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -46,7 +48,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="10dp"
             tools:mockup_opacity="0.5"
             android:background="@color/details_item_separator"
             app:layout_constraintRight_toRightOf="parent"

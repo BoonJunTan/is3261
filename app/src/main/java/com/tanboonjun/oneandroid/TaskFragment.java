@@ -27,6 +27,7 @@ public class TaskFragment extends Fragment {
         TableLayout task_list_table = (TableLayout) view.findViewById(R.id.task_table_layout);
 
         for (int i = 0; i < 5; i++) {
+
             View taskRowView = inflater.inflate(R.layout.task_table_row, container, false);
             TableRow task_list_row = (TableRow) taskRowView.findViewById(R.id.task_table_row);
 
