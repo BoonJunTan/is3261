@@ -9,102 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-            android:id="@+id/task_breakdown_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@color/red">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:textStyle="bold"
-                    android:textSize="75sp"
-                    android:gravity="center"
-                    android:layout_weight="2"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:text="@string/new_task"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/header_title_text_size"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@color/yellow">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:textStyle="bold"
-                    android:textSize="75sp"
-                    android:gravity="center"
-                    android:layout_weight="2"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:text="@string/ongoing_task"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/header_title_text_size"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="150dp"
-                android:layout_weight="1"
-                android:orientation="vertical"
-                android:background="@color/green">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:textStyle="bold"
-                    android:textSize="75sp"
-                    android:gravity="center"
-                    android:layout_weight="2"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:text="@string/completed_task"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/header_title_text_size"
-                    android:layout_weight="1"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/task_breakdown_layout"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TableLayout
                 android:id="@+id/task_table_layout"
