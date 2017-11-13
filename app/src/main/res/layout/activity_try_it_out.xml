@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundTop"
+    android:background="@color/colorPrimaryDark"
     android:id="@+id/activity_try_it_out"
     tools:context="com.tanboonjun.oneandroid.TryItOutActivity">
 

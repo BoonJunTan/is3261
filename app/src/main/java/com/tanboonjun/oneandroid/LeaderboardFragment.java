@@ -114,29 +114,28 @@ public class LeaderboardFragment extends Fragment {
                     JSONArray array = obj.getJSONArray("success");
                     for(int i = 0 ; i < array.length(); i++) {
                         JSONObject currentObj = (JSONObject) array.get(i);
-//                        LatLng location = new LatLng(currentObj.getDouble("latitude"), currentObj.getDouble("longitude"));
-                        LatLng location = new LatLng(1.438192, 103.78895);
+                        LatLng location = new LatLng(currentObj.getDouble("longitude"), currentObj.getDouble("latitude"));
                         String name = currentObj.getString("name");
                         if (i == 0) {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
                                     .title("THE CHAMP")
                                     .snippet(name)
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.starone))
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.medalgold))
                             );
                         } else if (i == 1) {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
                                     .title("THE FIRST LOSER")
                                     .snippet(name)
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.startwo))
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.medalsilver))
                             );
                         } else if (i == 2) {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
                                     .title("THE POINTLESS")
                                     .snippet(name)
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.starthree))
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.medalbronze))
                             );
                         } else {
                             googleMap.addMarker(new MarkerOptions()

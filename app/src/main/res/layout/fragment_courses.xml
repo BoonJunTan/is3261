@@ -22,7 +22,7 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="@string/welcome_text" />
+            android:text="@string/topic_title" />
 
         <TextView
             android:layout_width="match_parent"

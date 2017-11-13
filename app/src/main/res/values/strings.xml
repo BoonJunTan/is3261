@@ -31,6 +31,7 @@
 
     <!-- Under Home -> Details -> Topic -->
     <string name="topic">Topic</string>
+    <string name="topic_title">Topic Overview</string>
     <string name="preview_button">Preview</string>
     <string name="try_it_out_button">Try it Out</string>
     <string name="try_it_out">Try it Out</string>
