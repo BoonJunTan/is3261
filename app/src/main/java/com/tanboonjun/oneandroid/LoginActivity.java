@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginClick(View view) {
-        new MyAsyncTask().execute("https://lit-ravine-43882.herokuapp.com/contact/login");
+        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/contact/login");
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {

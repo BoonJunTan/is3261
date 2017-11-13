@@ -46,6 +46,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:text="Android basics"
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintLeft_toRightOf="@+id/imageView"
             app:layout_constraintRight_toRightOf="parent"
@@ -58,11 +59,12 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:text="Android Basics"
-            app:layout_constraintTop_toBottomOf="@id/textView"
+            android:textColor="@color/white"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toRightOf="@+id/imageView"
             app:layout_constraintRight_toRightOf="parent"
-            tools:layout_editor_absoluteY="27dp"
-            app:layout_constraintHorizontal_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@id/textView"
+            tools:layout_editor_absoluteY="27dp" />
 
         <ProgressBar
             android:id="@+id/progressBar2"
@@ -72,7 +74,9 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginTop="15dp"
+            android:indeterminate="false"
             android:progress="40"
+            android:theme="@style/hProgressBar"
             app:layout_constraintLeft_toRightOf="@+id/imageView"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -81,13 +85,14 @@
             android:id="@+id/textView3"
             android:layout_width="0dp"
             android:layout_height="15dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="3dp"
             android:text="40%"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar2"
-            android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent"
+            android:textColor="@color/white"
             app:layout_constraintLeft_toRightOf="@+id/imageView"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/progressBar2" />
 
     </android.support.constraint.ConstraintLayout>
 
