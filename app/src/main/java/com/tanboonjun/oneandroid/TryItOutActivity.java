@@ -94,6 +94,7 @@ public class TryItOutActivity extends Activity {
                         for (int x = 0; x < obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getJSONArray("answers").length(); x++) {
                             Button currentBtn = new Button(getApplicationContext());
                             currentBtn.setText(obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getJSONArray("answers").getString(x));
+                            currentBtn.setTextSize(13);
                             currentBtn.setLayoutParams(new LinearLayout.LayoutParams(
                                     ViewGroup.LayoutParams.WRAP_CONTENT,
                                     ViewGroup.LayoutParams.WRAP_CONTENT));
