@@ -8,6 +8,8 @@
     <color name="red">#FF0000</color>
     <color name="yellow">#FFFF00</color>
     <color name="green">#00FF00</color>
+    <color name="darkgray">#2e2e2e</color>
+    <color name="mediumgray">#4c4c4c</color>
 
     <color name="backgroundTop">#444a5a</color>
     <color name="backgroundBottom">#f5f6fa</color>

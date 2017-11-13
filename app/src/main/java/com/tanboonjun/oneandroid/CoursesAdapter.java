@@ -58,10 +58,10 @@ public class CoursesAdapter extends BaseAdapter {
         titleEt = (TextView) view.getTag(R.id.titleEt);
         enrolledEt = (TextView) view.getTag(R.id.enrolledEt);
         if (topic.getIsEnrolled() == true) {
-            picture.setImageResource(R.drawable.green_template);
+            picture.setImageResource(R.drawable.course_etemplate);
             enrolledEt.setVisibility(view.VISIBLE);
         } else {
-        picture.setImageResource(R.drawable.blank_template);
+        picture.setImageResource(R.drawable.course_template);
         }
 
         titleEt.setText(topic.getTitle());

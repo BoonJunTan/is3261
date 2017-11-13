@@ -7,10 +7,12 @@ package com.tanboonjun.oneandroid;
 public class Topic {
     private final String title;
     private final Boolean isEnrolled;
+    private final int id;
 
-    public Topic (String title, boolean isEnrolled) {
+    public Topic (String title, boolean isEnrolled, int id) {
         this.title = title;
         this.isEnrolled = isEnrolled;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -19,5 +21,9 @@ public class Topic {
 
     public boolean getIsEnrolled() {
         return isEnrolled;
+    }
+
+    public int getId() {
+        return id;
     }
 }
