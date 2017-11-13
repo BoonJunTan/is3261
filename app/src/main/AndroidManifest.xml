@@ -17,6 +17,10 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name=".HomeItems.Topic.TopicActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
