@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    tools:context="com.tanboonjun.oneandroid.HomeItems.Topic.TopicActivity">
+    tools:context="com.tanboonjun.oneandroid.TopicActivity">
 
     <ScrollView
         android:layout_width="0dp"
@@ -50,40 +50,42 @@
                 android:gravity="center" />
 
             <TextView
-                android:id="@+id/topic_description"
-                android:layout_width="match_parent"
+                android:id="@+id/markdown_title"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_height="0dp"
-                android:layout_weight="4"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:maxLines="6"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/header_footer_text_size"
-                android:gravity="center" />
-
-            <TableLayout
-                android:id="@+id/task_table_layout"
-                android:layout_width="fill_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="12">
-
-            </TableLayout>
+                android:layout_width="match_parent"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:layout_height="wrap_content" />
 
             <Button
                 android:id="@+id/preview_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:background="@color/colorAccent"
                 android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/header_footer_text_size"
+                android:layout_marginBottom="@dimen/dp10"
                 android:text="@string/preview_button" />
 
             <Button
-                android:id="@+id/add_task_button"
+                android:id="@+id/try_it_out_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAllCaps="false"
-                android:text="@string/add_to_task_button" />
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginBottom="@dimen/dp10"
+                android:textColor="@color/white"
+                android:textSize="@dimen/header_footer_text_size"
+                android:onClick="tryItOutClick"
+                android:background="@color/header_green"
+                android:text="@string/try_it_out_button" />
 
         </LinearLayout>
 
