@@ -1,11 +1,12 @@
 package com.tanboonjun.oneandroid.HomeItems.Details;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.tanboonjun.oneandroid.HomeItems.Topic.TopicActivity;
 import com.tanboonjun.oneandroid.R;
 
 class DetailsItem extends RecyclerView.ViewHolder {
@@ -24,7 +25,10 @@ class DetailsItem extends RecyclerView.ViewHolder {
         mDetailLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mDetailLayout.getContext(), mHeader.getText(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mDetailLayout.getContext(), mHeader.getText(), Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(mDetailLayout.getContext(), TopicActivity.class);
+                myIntent.putExtra("TopicName", mHeader.getText());
+                mDetailLayout.getContext().startActivity(myIntent);
             }
         });
     }

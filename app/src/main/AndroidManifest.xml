@@ -12,6 +12,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDX0WCzjqPGJtegbI_WzTH9PtQMt9Ix6yY" />
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait">
@@ -23,9 +24,11 @@
         </activity>
         <activity
             android:name=".HomeItems.Details.DetailsActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".HomeItems.MoreInfo.MoreInfoActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeItems.MoreInfo.MoreInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".HomeItems.Topic.TopicActivity"></activity>
     </application>
 
 </manifest>

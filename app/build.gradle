@@ -34,7 +34,7 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.ramotion.garlandview:garland-view:0.2.1'
     compile 'org.greenrobot:eventbus:3.0.0'
-    testCompile 'junit:junit:4.12'
     compile 'com.google.android.gms:play-services-maps:9.4.0'
     compile 'com.google.android.gms:play-services-ads:9.4.0'
+    testCompile 'junit:junit:4.12'
 }
