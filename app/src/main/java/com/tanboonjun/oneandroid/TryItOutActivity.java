@@ -2,6 +2,8 @@ package com.tanboonjun.oneandroid;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
@@ -13,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,15 +31,23 @@ public class TryItOutActivity extends Activity {
 
     ConstraintLayout activity_try_it_out;
 
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
+
+    int topicID;
+    int userID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_try_it_out);
         activity_try_it_out = (ConstraintLayout)findViewById(R.id.activity_try_it_out);
 
-        int topicID = getIntent().getIntExtra("TopicID", -1);
+        topicID = getIntent().getIntExtra("TopicID", -1);
 
-        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/subtopic/1/" + String.valueOf(topicID));
+        SharedPreferences prefs = getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
+        userID = prefs.getInt("userId", -1);
+
+        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/subtopic/" + String.valueOf(userID) + "/" + String.valueOf(topicID));
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -71,7 +82,7 @@ public class TryItOutActivity extends Activity {
 
         public void onPostExecute(String result) {
             try {
-                JSONObject obj = new JSONObject(result);
+                final JSONObject obj = new JSONObject(result);
                 if (obj.has("success")) {
                     TableLayout questions_list_table = (TableLayout) findViewById(R.id.try_it_out_table_layout);
 
@@ -91,10 +102,25 @@ public class TryItOutActivity extends Activity {
 
                         LinearLayout answerLayout = (LinearLayout) taskRowView.findViewById(R.id.answers_layout);
 
+                        final String answer = obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getString("correct_answer");
+
                         for (int x = 0; x < obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getJSONArray("answers").length(); x++) {
                             Button currentBtn = new Button(getApplicationContext());
-                            currentBtn.setText(obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getJSONArray("answers").getString(x));
+                            final String buttonText = obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getJSONArray("answers").getString(x);
+                            currentBtn.setText(buttonText);
                             currentBtn.setTextSize(13);
+                            currentBtn.setAllCaps(false);
+                            currentBtn.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    if (buttonText.equals(answer)) {
+                                        Toast.makeText(getApplicationContext(), "You have selected the right answer, congrats.", Toast.LENGTH_SHORT).show();
+                                        new FinishTopicTask().execute("https://anchantapp.herokuapp.com/contact/set/" + String.valueOf(userID) + "/" + String.valueOf(topicID));
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "You have selected the wrong answer, please pick another one.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
                             currentBtn.setLayoutParams(new LinearLayout.LayoutParams(
                                     ViewGroup.LayoutParams.WRAP_CONTENT,
                                     ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -105,6 +131,50 @@ public class TryItOutActivity extends Activity {
                     }
                 }
 
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public class FinishTopicTask extends AsyncTask<String, Void, String> {
+
+        public String doInBackground(String... str) {
+            URL url = convertToUrl(str[0]);
+            HttpURLConnection httpURLConnection = null;
+            int responseCode;
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            try {
+                httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.connect();
+                responseCode = httpURLConnection.getResponseCode();
+                if (responseCode == httpURLConnection.HTTP_OK) {
+                    InputStream inputStream = httpURLConnection.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    while ((line = reader.readLine())!=null) {
+                        stringBuilder.append(line);
+                    }
+                    inputStream.close();
+                }
+            } catch (Exception e) {
+                System.out.println("Error : " + e.getMessage());
+                e.printStackTrace();
+            } finally {
+                httpURLConnection.disconnect();
+            }
+            return stringBuilder.toString();
+        }
+
+        public void onPostExecute(String result) {
+            try {
+                final JSONObject obj = new JSONObject(result);
+                if (obj.has("success")) {
+                    Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+                    myIntent.putExtra("load_task_fragment", "task_fragment");
+                    startActivity(myIntent);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }

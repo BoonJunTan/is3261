@@ -47,14 +47,13 @@ public class MainActivity extends Activity {
                     }
                 });
 
-        MenuItem selectedItem;
-        if (savedInstanceState != null) {
-            mSelectedItem = savedInstanceState.getInt(SELECTED_ITEM, 0);
-            selectedItem = mBottomNav.getMenu().findItem(mSelectedItem);
+        if (getIntent().getStringExtra("load_task_fragment") != null) {
+            selectFragment(mBottomNav.getMenu().getItem(2));
+            mBottomNav.getMenu().getItem(2).setChecked(true);
         } else {
-            selectedItem = mBottomNav.getMenu().getItem(0);
+            selectFragment(mBottomNav.getMenu().getItem(0));
+            mBottomNav.getMenu().getItem(0).setChecked(true);
         }
-        selectFragment(selectedItem);
     }
 
     @Override
@@ -102,9 +101,6 @@ public class MainActivity extends Activity {
             MenuItem menuItem = mBottomNav.getMenu().getItem(i);
             menuItem.setChecked(menuItem.getItemId() == item.getItemId());
         }
-
-        // Not sure why this is needed for a very weird bug when app launched
-        mBottomNav.getMenu().getItem(0).setChecked(true);
 
         if (frag != null) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();
