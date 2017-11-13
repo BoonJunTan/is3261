@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/backgroundTop"
     android:id="@+id/activity_try_it_out"
     tools:context="com.tanboonjun.oneandroid.TryItOutActivity">
 
@@ -20,29 +20,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="20"
-            android:background="@color/backgroundTop"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent">
+            android:orientation="vertical">
 
             <TextView
+                android:id="@+id/try_it_out_tv"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:text="@string/try_it_out"
                 android:textColor="@color/yellow"
                 android:textSize="@dimen/header_footer_text_size"
-                android:gravity="center" />
+                android:gravity="center"/>
 
             <TableLayout
                 android:id="@+id/try_it_out_table_layout"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="19">
+                android:layout_height="wrap_content">
 
             </TableLayout>
 

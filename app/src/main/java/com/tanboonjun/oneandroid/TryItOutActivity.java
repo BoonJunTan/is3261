@@ -8,8 +8,11 @@ import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +75,7 @@ public class TryItOutActivity extends Activity {
                 if (obj.has("success")) {
                     TableLayout questions_list_table = (TableLayout) findViewById(R.id.try_it_out_table_layout);
 
-                    for (int i = 0; i < 5; i++) {
+                    for (int i = 0; i < obj.getJSONObject("success").getJSONArray("questions").length(); i++) {
                         LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
                                 (Context.LAYOUT_INFLATER_SERVICE);
 
@@ -81,7 +84,23 @@ public class TryItOutActivity extends Activity {
                         View taskRowView = inflater.inflate(R.layout.try_it_out_table_row, viewGroup, false);
                         TableRow task_list_row = (TableRow) taskRowView.findViewById(R.id.try_it_out_table_row);
 
+                        TextView questionTV = (TextView) task_list_row.findViewById(R.id.markdown_question_tv);
+                        questionTV.setText(obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getString("title"));
+
                         questions_list_table.addView(task_list_row);
+
+                        LinearLayout answerLayout = (LinearLayout) taskRowView.findViewById(R.id.answers_layout);
+
+                        for (int x = 0; x < obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getJSONArray("answers").length(); x++) {
+                            Button currentBtn = new Button(getApplicationContext());
+                            currentBtn.setText(obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getJSONArray("answers").getString(x));
+                            currentBtn.setLayoutParams(new LinearLayout.LayoutParams(
+                                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT));
+
+                            answerLayout.addView(currentBtn);
+                        }
+
                     }
                 }
 
