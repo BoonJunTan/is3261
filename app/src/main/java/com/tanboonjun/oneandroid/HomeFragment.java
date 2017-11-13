@@ -11,7 +11,6 @@ import com.ramotion.garlandview.TailLayoutManager;
 import com.ramotion.garlandview.TailRecyclerView;
 import com.ramotion.garlandview.TailSnapHelper;
 import com.ramotion.garlandview.header.HeaderTransformer;
-import com.tanboonjun.oneandroid.HomeItems.Details.DetailsActivity;
 import com.tanboonjun.oneandroid.HomeItems.Inner.InnerData;
 import com.tanboonjun.oneandroid.HomeItems.Inner.InnerItem;
 import com.tanboonjun.oneandroid.HomeItems.Outer.OuterAdapter;
@@ -104,8 +103,6 @@ public class HomeFragment extends Fragment {
         if (itemData == null) {
             return;
         }
-
-        DetailsActivity.start((MainActivity)getActivity(), item.getItemData().subTitle, item.itemView);
     }
 
 }
