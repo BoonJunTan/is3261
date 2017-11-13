@@ -2,12 +2,14 @@ package com.tanboonjun.oneandroid;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import org.json.JSONArray;
@@ -36,16 +38,7 @@ public class CourseFragment extends Fragment {
         // Required empty public constructor
     }
 
-    private Topic[] topics = {
-            new Topic("Topic1", true),
-            new Topic("topic2", false),
-            new Topic("Topic3", false),
-            new Topic("topic4", true),
-            new Topic("Topic5", false),
-            new Topic("topic6", true),
-            new Topic("Topic7", false),
-            new Topic("topic8", false)
-    };
+    List<Topic> result1 = new ArrayList<>();
     GridView gridView;
     public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
     @Override
@@ -56,6 +49,17 @@ public class CourseFragment extends Fragment {
         SharedPreferences prefs = getContext().getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
         int userId = prefs.getInt("userId", -1);
         gridView = (GridView) rootView.findViewById(R.id.gridview);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                Intent myIntent = new Intent(getActivity(), EnrollActivity.class);
+                int thisId = result1.get(position).getId();
+                myIntent.putExtra("topicId", thisId);
+                myIntent.putExtra("isEnrolled", result1.get(position).getIsEnrolled());
+                startActivity(myIntent);
+            }
+        });
         new MyAsyncTask().execute("https://anchantapp.herokuapp.com/topic/all/" + String.valueOf(userId));
         return rootView;
     }
@@ -95,11 +99,10 @@ public class CourseFragment extends Fragment {
                 JSONObject obj = new JSONObject(result);
                 if (obj.has("success")) {
                     JSONArray array = obj.getJSONArray("success");
-                    List<Topic> result1 = new ArrayList<>();
                     Topic[] topics = new Topic[array.length()];
                     for (int i = 0 ; i < array.length() ; i++) {
                         JSONObject data = (JSONObject)array.get(i);
-                        Topic abc = new Topic(data.getString("title"), data.getBoolean("is_enrolled"));
+                        Topic abc = new Topic(data.getString("title"), data.getBoolean("is_enrolled"), data.getInt("id"));
                         result1.add(abc);
                     }
 
