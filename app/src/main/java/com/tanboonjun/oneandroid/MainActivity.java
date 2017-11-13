@@ -3,10 +3,13 @@ package com.tanboonjun.oneandroid;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -14,11 +17,23 @@ public class MainActivity extends Activity {
     private static final String SELECTED_ITEM = "arg_selected_item";
     private BottomNavigationView mBottomNav;
     private int mSelectedItem;
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences prefs = getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
+        String username = prefs.getString("username", null);
+        int userId = prefs.getInt("userId", -1);
+        // check if specific key has value
+        if ( username != null) {
+            Toast.makeText(this, username + ": " + String.valueOf(userId), Toast.LENGTH_SHORT).show();
+        } else {
+            Intent myIntent = new Intent(this, LoginActivity.class);
+            startActivity(myIntent);
+        }
 
         mBottomNav = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);

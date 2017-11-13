@@ -1,6 +1,7 @@
 package com.tanboonjun.oneandroid;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import java.net.URL;
 public class LoginActivity extends AppCompatActivity {
     private EditText usernameEt;
     private EditText passwordEt;
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginClick(View view) {
-        new MyAsyncTask().execute("https://lit-ravine-43882.herokuapp.com/contact/login");
+        String username = String.valueOf(usernameEt.getText());
+        String password = String.valueOf(passwordEt.getText());
+        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/contact/login", username, password);
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -48,8 +52,8 @@ public class LoginActivity extends AppCompatActivity {
                 DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream ());
                 try {
                     JSONObject obj = new JSONObject();
-                    obj.put("username" , "ronaldkan");
-                    obj.put("password" , "Pass1234");
+                    obj.put("username" , str[1]);
+                    obj.put("password" , str[2]);
 
                     wr.writeBytes(obj.toString());
                     wr.flush();
@@ -80,6 +84,10 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 JSONObject obj = new JSONObject(result);
                 if (obj.has("success")) {
+                    SharedPreferences.Editor editor = getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE).edit();
+                    editor.putString("username", String.valueOf(usernameEt.getText()));
+                    editor.putInt("userId", obj.getInt("success"));
+                    editor.commit();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
