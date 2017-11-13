@@ -103,7 +103,7 @@ public class TopicActivity extends Activity {
 
     public void tryItOutClick(View view) {
         Intent myIntent = new Intent(this, TryItOutActivity.class);
-        myIntent.putExtra("TopicTitle", topicID);
+        myIntent.putExtra("TopicID", topicID);
         startActivity(myIntent);
     }
 

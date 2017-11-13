@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/topic");
+        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/topic/1");
         EventBus.getDefault().register(this);
     }
 

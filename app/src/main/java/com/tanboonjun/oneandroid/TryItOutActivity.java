@@ -1,9 +1,13 @@
 package com.tanboonjun.oneandroid;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -19,10 +23,13 @@ import java.net.URL;
 
 public class TryItOutActivity extends Activity {
 
+    ConstraintLayout activity_try_it_out;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_try_it_out);
+        activity_try_it_out = (ConstraintLayout)findViewById(R.id.activity_try_it_out);
 
         int topicID = getIntent().getIntExtra("TopicID", -1);
 
@@ -63,12 +70,16 @@ public class TryItOutActivity extends Activity {
             try {
                 JSONObject obj = new JSONObject(result);
                 if (obj.has("success")) {
-
                     TableLayout questions_list_table = (TableLayout) findViewById(R.id.try_it_out_table_layout);
 
                     for (int i = 0; i < 5; i++) {
-                        View taskRowView = findViewById(R.layout.try_it_out_table_row);
-                        TableRow task_list_row = (TableRow) taskRowView.findViewById(R.id.task_table_row);
+                        LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
+                                (Context.LAYOUT_INFLATER_SERVICE);
+
+                        final ViewGroup viewGroup = (ViewGroup) ((ViewGroup) findViewById(android.R.id.content)).getChildAt(0);
+
+                        View taskRowView = inflater.inflate(R.layout.try_it_out_table_row, viewGroup, false);
+                        TableRow task_list_row = (TableRow) taskRowView.findViewById(R.id.try_it_out_table_row);
 
                         questions_list_table.addView(task_list_row);
                     }
