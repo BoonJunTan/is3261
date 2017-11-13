@@ -65,6 +65,9 @@ public class MainActivity extends Activity {
             case R.id.action_home:
                 frag = new HomeFragment();
                 break;
+            case R.id.action_courses:
+                frag = new CourseFragment();
+                break;
             case R.id.action_task:
                 frag = new TaskFragment();
                 break;

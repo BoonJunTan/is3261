@@ -3,6 +3,7 @@
 
     <!-- Bottom Nav Bar Name -->
     <string name="home_nav">Home</string>
+    <string name="courses_nav">Courses</string>
     <string name="task_nav">Task</string>
     <string name="challenge_nav">Leaderboard</string>
     <string name="profile_nav">Profile</string>
@@ -28,11 +29,19 @@
     <string name="details_close">CLOSE</string>
     <string name="details_details">MORE INFO</string>
 
+    <!-- Under Home -> Details -> Topic -->
+    <string name="topic">Topic</string>
+    <string name="preview_button">Preview</string>
+    <string name="add_to_task_button">Add to Task</string>
+
     <!-- Under Task Fragment -->
     <string name="new_task">New</string>
     <string name="ongoing_task">Ongoing</string>
     <string name="completed_task">Completed</string>
     <string name="all_task">All</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Under Leaderboard Fragment -->
 

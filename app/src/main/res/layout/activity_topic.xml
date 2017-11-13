@@ -4,6 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context="com.tanboonjun.oneandroid.HomeItems.Topic.TopicActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="20"
+            android:background="@color/backgroundTop"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/topic"
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/header_footer_text_size"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/topic"
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:maxLines="2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/header_title_text_size"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/topic_description"
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_height="0dp"
+                android:layout_weight="4"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:maxLines="6"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/header_footer_text_size"
+                android:gravity="center" />
+
+            <TableLayout
+                android:id="@+id/task_table_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="12">
+
+            </TableLayout>
+
+            <Button
+                android:id="@+id/preview_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:text="@string/preview_button" />
+
+            <Button
+                android:id="@+id/add_task_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAllCaps="false"
+                android:text="@string/add_to_task_button" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

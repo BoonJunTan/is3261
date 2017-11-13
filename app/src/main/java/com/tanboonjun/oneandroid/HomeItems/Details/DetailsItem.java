@@ -27,7 +27,7 @@ class DetailsItem extends RecyclerView.ViewHolder {
             public void onClick(View view) {
                 //Toast.makeText(mDetailLayout.getContext(), mHeader.getText(), Toast.LENGTH_SHORT).show();
                 Intent myIntent = new Intent(mDetailLayout.getContext(), TopicActivity.class);
-                myIntent.putExtra("TopicName", mHeader.getText());
+                myIntent.putExtra("TopicTitle", mHeader.getText());
                 mDetailLayout.getContext().startActivity(myIntent);
             }
         });

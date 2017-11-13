@@ -10,7 +10,8 @@
         android:id="@+id/username_layout"
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="75dp">
+        android:layout_height="75dp"
+        android:layout_marginTop="10dp">
 
         <TextView
             android:layout_width="match_parent"
