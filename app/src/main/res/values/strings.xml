@@ -32,7 +32,8 @@
     <!-- Under Home -> Details -> Topic -->
     <string name="topic">Topic</string>
     <string name="preview_button">Preview</string>
-    <string name="add_to_task_button">Add to Task</string>
+    <string name="try_it_out_button">Try it Out</string>
+    <string name="try_it_out">Try it Out</string>
 
     <!-- Under Task Fragment -->
     <string name="new_task">New</string>

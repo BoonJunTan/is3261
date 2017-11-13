@@ -57,7 +57,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //generateData();
         new MyAsyncTask().execute("https://anchantapp.herokuapp.com/topic");
         EventBus.getDefault().register(this);
     }
@@ -66,37 +65,6 @@ public class HomeFragment extends Fragment {
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
-    }
-
-    public void generateData() {
-        String[] outerDataLists = {"Getting Started", "Building Apps with Content Sharing", "Best Practices for User Interface", "Best Practices for User Input"};
-
-        ArrayList<String[]> innerDataLists = new ArrayList<>();
-        String[] innerData1 = {"Building Your First App", "Supporting Different Devices", "Building a Dynamic UI with Fragment", "Saving Data", "Interacting with Other Apps", "Working with System Permissions"};
-        String[] innerData2 = {"Sharing Simple Data", "Sharing Files", "Sharing Files with NFC"};
-        String[] innerData3 = {"Designing for Multiple Screens", "Build a Responsive UI with ConstraintLayout", "Adding the App Bar", "Showing Pop-Up Messages", "Creating Custom View", "Creating Backward-Compatible UIs", "Implementing Accessibility", "Managing the System UI", "Creating Apps with Material Design"};
-        String[] innerData4 = {"Using Touch Gestures", "Handling Keyboard Input", "Supporting Game Controllers"};
-        innerDataLists.add(innerData1);
-        innerDataLists.add(innerData2);
-        innerDataLists.add(innerData3);
-        innerDataLists.add(innerData4);
-
-        final List<List<InnerData>> outerData = new ArrayList<>();
-        for (int i = 0; i < outerDataLists.length; i++) {
-            final List<InnerData> innerData = new ArrayList<>();
-
-            // First Add Title
-            innerData.add(new InnerData(outerDataLists[i]));
-
-            // Then Add Sub-Title
-            for (int j = 0; j < innerDataLists.get(i).length; j++) {
-                innerData.add(new InnerData(innerDataLists.get(i)[j]));
-            }
-
-            outerData.add(innerData);
-        }
-
-        initRecyclerView(outerData);
     }
 
     private void initRecyclerView(List<List<InnerData>> data) {
@@ -160,10 +128,11 @@ public class HomeFragment extends Fragment {
                         final List<InnerData> innerData = new ArrayList<>();
 
                         // First Add Title
-                        innerData.add(new InnerData(key));
+                        innerData.add(new InnerData(key, -1));
 
                         for (int i = 0; i < obj.getJSONObject("success").getJSONArray(key).length(); i++) {
-                            innerData.add(new InnerData(obj.getJSONObject("success").getJSONArray(key).getJSONObject(i).get("title").toString()));
+                            JSONObject currentObject = obj.getJSONObject("success").getJSONArray(key).getJSONObject(i);
+                            innerData.add(new InnerData(currentObject.get("title").toString(), Integer.parseInt(currentObject.get("id").toString())));
                         }
 
                         outerData.add(innerData);

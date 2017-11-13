@@ -36,5 +36,6 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.google.android.gms:play-services-maps:9.4.0'
     compile 'com.google.android.gms:play-services-ads:9.4.0'
+    compile 'ru.noties:markwon:1.0.1'
     testCompile 'junit:junit:4.12'
 }

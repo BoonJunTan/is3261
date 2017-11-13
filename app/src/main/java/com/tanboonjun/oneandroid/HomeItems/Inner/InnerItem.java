@@ -5,7 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.tanboonjun.oneandroid.HomeItems.Topic.TopicActivity;
+import com.tanboonjun.oneandroid.TopicActivity;
 import com.tanboonjun.oneandroid.R;
 
 public class InnerItem extends com.ramotion.garlandview.inner.InnerItem {
@@ -26,9 +26,9 @@ public class InnerItem extends com.ramotion.garlandview.inner.InnerItem {
         mInnerLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(mDetailLayout.getContext(), mHeader.getText(), Toast.LENGTH_SHORT).show();
                 Intent myIntent = new Intent(mInnerLayout.getContext(), TopicActivity.class);
                 myIntent.putExtra("TopicTitle", mHeader.getText());
+                myIntent.putExtra("TopicID", getItemData().subTitleID);
                 mInnerLayout.getContext().startActivity(myIntent);
             }
         });
