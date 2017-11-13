@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Pair;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tanboonjun.oneandroid.HomeItems.MoreInfo.MoreInfoActivity;
 import com.tanboonjun.oneandroid.R;
@@ -52,10 +53,13 @@ public class DetailsActivity extends Activity {
         String[] innerData = {"Constraints overview", "Add ConstraintLayout to your project", "Add a constraint", "Adjust the constraint bias", "Adjust the view size", "Adjust the view margins", "Control linear groups with a chain", "Automatically create constraints"};
 
         for (int i = 0; i < innerData.length; i++) {
-            mListData.add(new DetailsData(innerData[i]));
+            mListData.add(new DetailsData(Integer.toString(i + 1) + ": " + innerData[i]));
         }
 
+        // Need add onClick on each innerData
+
         ((RecyclerView)findViewById(R.id.recycler_view_subSubTitle)).setAdapter(new DetailsAdapter(mListData));
+
     }
 
     public void onCloseClick(View v) {
@@ -70,5 +74,9 @@ public class DetailsActivity extends Activity {
         } else {
             finish();
         }
+    }
+
+    public void onTopicClick(View v) {
+        Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
     }
 }
