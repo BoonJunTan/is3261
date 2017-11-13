@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ramotion.garlandview.TailLayoutManager;
 import com.ramotion.garlandview.TailRecyclerView;
@@ -64,6 +65,10 @@ public class HomeFragment extends Fragment {
         super.onResume();
         SharedPreferences prefs = getContext().getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
         int userId = prefs.getInt("userId", -1);
+        String userName = prefs.getString("username", null);
+
+        TextView welcomeText = (TextView) getActivity().findViewById(R.id.welcome_tv);
+        welcomeText.setText("Hi again " + userName + "!");
 
         new MyAsyncTask().execute("https://anchantapp.herokuapp.com/topic/" + String.valueOf(userId));
         EventBus.getDefault().register(this);

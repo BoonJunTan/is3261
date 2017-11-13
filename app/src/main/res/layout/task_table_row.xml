@@ -11,15 +11,6 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:background="@color/details_item_separator"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:mockup_opacity="0.5"
-            tools:layout_editor_absoluteY="184dp" />
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="98dp"
@@ -93,6 +84,16 @@
             app:layout_constraintLeft_toRightOf="@+id/imageView"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/taskProgressBar" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/details_item_separator"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:mockup_opacity="0.5"
+            tools:layout_editor_absoluteY="184dp" />
 
     </android.support.constraint.ConstraintLayout>
 
