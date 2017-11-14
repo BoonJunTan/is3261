@@ -46,6 +46,8 @@ public class LeaderboardFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_leaderboard, container, false);
 
@@ -119,21 +121,21 @@ public class LeaderboardFragment extends Fragment {
                                     .position(location)
                                     .title("THE CHAMP")
                                     .snippet(name)
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.starthree))
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.medalgold))
                             );
                         } else if (i == 1) {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
                                     .title("THE FIRST LOSER")
                                     .snippet(name)
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.startwoo))
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.medalsilver))
                             );
                         } else if (i == 2) {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
                                     .title("THE POINTLESS")
                                     .snippet(name)
-                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.staronee))
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.medalbronze))
                             );
                         } else {
                             googleMap.addMarker(new MarkerOptions()

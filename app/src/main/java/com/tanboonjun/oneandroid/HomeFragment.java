@@ -2,11 +2,13 @@ package com.tanboonjun.oneandroid;
 
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.ramotion.garlandview.TailLayoutManager;
 import com.ramotion.garlandview.TailRecyclerView;
@@ -32,11 +34,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
+
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
 
     public HomeFragment() {
         // Required empty public constructor
@@ -57,7 +63,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/topic");
+        SharedPreferences prefs = getContext().getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
+        int userId = prefs.getInt("userId", -1);
+        String userName = prefs.getString("username", null);
+
+        TextView welcomeText = (TextView) getActivity().findViewById(R.id.welcome_tv);
+        welcomeText.setText("Hi again " + userName + "!");
+
+        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/topic/" + String.valueOf(userId));
         EventBus.getDefault().register(this);
     }
 

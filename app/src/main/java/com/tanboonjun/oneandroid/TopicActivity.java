@@ -2,6 +2,7 @@ package com.tanboonjun.oneandroid;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,8 @@ import ru.noties.markwon.Markwon;
 
 public class TopicActivity extends Activity {
 
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
+
     int topicID;
 
     @Override
@@ -34,7 +37,10 @@ public class TopicActivity extends Activity {
 
         ((TextView) findViewById(R.id.topic)).setText(topicTitle);
 
-        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/subtopic/1/" + String.valueOf(topicID));
+        SharedPreferences prefs = getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
+        int userId = prefs.getInt("userId", -1);
+
+        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/subtopic/" + String.valueOf(userId) + "/" + String.valueOf(topicID));
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -103,7 +109,7 @@ public class TopicActivity extends Activity {
 
     public void tryItOutClick(View view) {
         Intent myIntent = new Intent(this, TryItOutActivity.class);
-        myIntent.putExtra("TopicTitle", topicID);
+        myIntent.putExtra("TopicID", topicID);
         startActivity(myIntent);
     }
 

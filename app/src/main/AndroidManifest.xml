@@ -30,9 +30,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TryItOutActivity" />
-        <activity android:name=".EnrollActivity" />
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".TryItOutActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".EnrollActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

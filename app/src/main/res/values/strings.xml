@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OneAndroid</string>
+    <string name="app_name">Anchant</string>
 
     <!-- Bottom Nav Bar Name -->
     <string name="home_nav">Home</string>
@@ -31,22 +31,21 @@
 
     <!-- Under Home -> Details -> Topic -->
     <string name="topic">Topic</string>
+    <string name="topic_title">Topic Overview</string>
     <string name="preview_button">Preview</string>
     <string name="try_it_out_button">Try it Out</string>
     <string name="try_it_out">Try it Out</string>
 
-    <!-- Under Task Fragment -->
-    <string name="new_task">New</string>
-    <string name="ongoing_task">Ongoing</string>
-    <string name="completed_task">Completed</string>
-    <string name="all_task">All</string>
+    <!-- Under Courses Fragment -->
+    <string name="courses_message">Start by choosing a topic</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Under Task Fragment -->
+    <string name="progress_message">Your Progress</string>
 
     <!-- Under Leaderboard Fragment -->
-
+    <string name="leaderboard_title">Leaderboard</string>
 
     <!-- Under Profile Fragment -->
-
+    <string name="profile_title">Your Profile</string>
+    <string name="profile_subtitle">Feel free to make changes</string>
 </resources>
