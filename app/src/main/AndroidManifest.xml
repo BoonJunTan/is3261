@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
 
     <uses-feature android:name="android.hardware.camera2" />
 
@@ -37,18 +37,25 @@
         <activity
             android:name=".TryItOutActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Preview.LinearLayoutActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Preview.ConstraintLayoutActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".Preview.RelativeLayoutActivity"
+        <activity
+            android:name=".Preview.LinearLayoutActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".EnrollActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".RegisterActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".QrcodeActivity"
+        <activity
+            android:name=".Preview.ConstraintLayoutActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".Preview.RelativeLayoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".EnrollActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".QrcodeActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ScoreboardActivity"></activity>
     </application>
 
 </manifest>
