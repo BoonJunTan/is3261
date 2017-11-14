@@ -1,16 +1,18 @@
 package com.tanboonjun.oneandroid;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.vision.CameraSource;
@@ -19,15 +21,19 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 
-public class QrcodeActivity extends AppCompatActivity {
-    private static final int REQUEST_CAMERA_PERMISSION = 100;
+public class QrcodeActivity extends Activity {
+    private static final int REQUEST_CAMERA_PERMISSION = 300;
     private boolean permissionToUseCameraAccepted = false;
     private String[] permissions = {Manifest.permission.CAMERA};
     SurfaceView cameraView;
     TextView tvCodeInfo;
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
+
+    private Camera camera;
+    boolean flashmode = false;
 
     @Override
 
@@ -38,8 +44,8 @@ public class QrcodeActivity extends AppCompatActivity {
 
         switch (requestCode) {
             case REQUEST_CAMERA_PERMISSION:
-                if (grantResults.length>1) {
-                    permissionToUseCameraAccepted = grantResults[1] ==
+                if (grantResults.length > 0) {
+                    permissionToUseCameraAccepted = grantResults[0] ==
                             PackageManager.PERMISSION_GRANTED;
                 }
                 break;
@@ -53,23 +59,24 @@ public class QrcodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, permissions,
                     REQUEST_CAMERA_PERMISSION);
         }
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(this, permissions,
-                REQUEST_CAMERA_PERMISSION);
-        }
+
         cameraView = (SurfaceView) findViewById(R.id.camera_view);
-        tvCodeInfo = (TextView) findViewById(R.id.QRCode_Info);
+
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
+
         cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640, 480).build();
+
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
                 try {
-                    cameraSource.start(cameraView.getHolder());
+                    if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                        cameraSource.start(cameraView.getHolder());
+                    }
                 } catch (IOException ie) {
                     Log.e("CAMERA SOURCE", ie.getMessage());
                 }
@@ -97,7 +104,7 @@ public class QrcodeActivity extends AppCompatActivity {
                 if (barcodes.size() != 0) {
                     tvCodeInfo.post(new Runnable() {
                         public void run() {
-                            tvCodeInfo.setText(barcodes.valueAt(0).displayValue);
+                            // Call API - either to enroll to course or show course details first
                         }
                     });
                 }
@@ -105,4 +112,42 @@ public class QrcodeActivity extends AppCompatActivity {
         });
 
     }
+
+    public void flashLightClick(View view) {
+        camera = getCamera(cameraSource);
+        if (camera != null) {
+            try {
+                Camera.Parameters param = camera.getParameters();
+                param.setFlashMode(!flashmode?Camera.Parameters.FLASH_MODE_TORCH :Camera.Parameters.FLASH_MODE_OFF);
+                camera.setParameters(param);
+                flashmode = !flashmode;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
+    private static Camera getCamera(@NonNull CameraSource cameraSource) {
+        Field[] declaredFields = CameraSource.class.getDeclaredFields();
+
+        for (Field field : declaredFields) {
+            if (field.getType() == Camera.class) {
+                field.setAccessible(true);
+                try {
+                    Camera camera = (Camera) field.get(cameraSource);
+                    if (camera != null) {
+                        return camera;
+                    }
+                    return null;
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                break;
+            }
+        }
+        return null;
+    }
+
+
 }

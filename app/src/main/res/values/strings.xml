@@ -25,6 +25,9 @@
     <string name="transition_avatar_border" translatable="false"></string>
 
     <!-- Under Home -> Details -> Topic -->
+    <string name="scan_qr_code">Please scan the QR code on the selected enrolled course.</string>
+
+    <!-- Under Home -> Details -> Topic -->
     <string name="topic">Topic</string>
     <string name="topic_title">Topic Overview</string>
     <string name="preview_button">Preview</string>

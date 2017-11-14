@@ -134,7 +134,7 @@ public class TopicActivity extends Activity {
             textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         } else {
             speaking = false;
-            listenBtn.setText("Stopped... Press to continue");
+            listenBtn.setText("Stopped... Press to restart");
             textToSpeech.stop();
         }
 
