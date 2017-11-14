@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ramotion.garlandview.TailLayoutManager;
 import com.ramotion.garlandview.TailRecyclerView;
@@ -108,7 +107,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         Intent myIntent = new Intent(getActivity(), QrcodeActivity.class);
         startActivity(myIntent);
-        Toast.makeText(getActivity(), "fewfwf", Toast.LENGTH_SHORT).show();
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {

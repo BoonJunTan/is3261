@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
@@ -27,11 +26,9 @@ public class MainActivity extends Activity {
 
         SharedPreferences prefs = getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
         String username = prefs.getString("username", null);
-        int userId = prefs.getInt("userId", -1);
+
         // check if specific key has value
-        if ( username != null) {
-            Toast.makeText(this, username + ": " + String.valueOf(userId), Toast.LENGTH_SHORT).show();
-        } else {
+        if (username == null) {
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
         }

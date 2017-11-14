@@ -106,7 +106,6 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
-                Toast.makeText(getApplicationContext(), "in onPostExecute of Activity3, result = " + obj.has("success"), Toast.LENGTH_LONG).show();
             } catch (JSONException e) {
                 e.printStackTrace();
             }
