@@ -35,6 +35,9 @@
     <string name="go_next_subtopic">Next Subtopic</string>
     <string name="see_progress">See My Progress</string>
 
+    <!-- Under Home -> Details -> Topic -> Try It Out -> Preview -->
+    <string name="preview_linear_layout">Linear Layout</string>
+
     <!-- Under Courses Fragment -->
     <string name="courses_message">Start by choosing a topic</string>
 
@@ -42,7 +45,6 @@
     <string name="progress_message">Your Progress</string>
 
     <!-- Under Leaderboard Fragment -->
-
 
     <!-- Under Profile Fragment -->
 

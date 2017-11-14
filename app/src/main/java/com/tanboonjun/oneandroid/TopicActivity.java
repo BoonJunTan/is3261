@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.tanboonjun.oneandroid.Preview.LinearLayoutActivity;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -105,6 +107,11 @@ public class TopicActivity extends Activity {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void previewClick(View view) {
+        Intent myIntent = new Intent(this, LinearLayoutActivity.class);
+        startActivity(myIntent);
     }
 
     public void tryItOutClick(View view) {
