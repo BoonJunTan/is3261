@@ -41,12 +41,14 @@
             android:screenOrientation="portrait"></activity>
         <activity android:name=".Preview.ConstraintLayoutActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".Preview.RelativeLayoutActivity"></activity>
+        <activity android:name=".Preview.RelativeLayoutActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".EnrollActivity"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".RegisterActivity"
             android:screenOrientation="portrait"></activity>
-        <activity android:name=".QrcodeActivity"></activity>
+        <activity android:name=".QrcodeActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
