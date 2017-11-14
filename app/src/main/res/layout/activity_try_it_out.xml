@@ -45,31 +45,34 @@
                 android:id="@+id/footer_btn_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp">
 
                 <Button
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="13sp"
-                    android:textAllCaps="false"
-                    android:layout_marginRight="10dp"
-                    android:text="@string/go_next_subtopic"
-                    android:background="@color/green"
-                    android:onClick="nextSubTopicBtnClick"/>
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="10dp"
                     android:textSize="13sp"
                     android:textAllCaps="false"
                     android:text="@string/see_progress"
-                    android:background="@color/green"
+                    android:textColor="@color/white"
+                    android:background="@color/header_green"
                     android:onClick="seeMyProgressBtnClick"/>
+
+                <Button
+                    android:id="@+id/subtopic_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="13sp"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/go_next_subtopic"
+                    android:textColor="@color/white"
+                    android:background="@color/colorAccent"
+                    android:onClick="nextSubTopicBtnClick"/>
 
             </LinearLayout>
 

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ public class TryItOutActivity extends Activity {
     int noOfAnswerCorrectlySelected = 0;
     int topicID;
     int userID;
+    int nextTopicID;
+    String nextTopicTitle;
 
     public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
 
@@ -52,6 +55,9 @@ public class TryItOutActivity extends Activity {
         new MyAsyncTask().execute("https://anchantapp.herokuapp.com/subtopic/" + String.valueOf(userID) + "/" + String.valueOf(topicID));
 
         footerBtnLayout.setVisibility(LinearLayout.GONE);
+
+        Button subtopicButton = (Button) findViewById(R.id.subtopic_btn);
+        subtopicButton.setVisibility(View.VISIBLE);
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -120,7 +126,9 @@ public class TryItOutActivity extends Activity {
                                 @Override
                                 public void onClick(View view) {
                                     if (buttonText.equals(answer)) {
-                                        Toast.makeText(getApplicationContext(), "You have selected the right answer, congrats.", Toast.LENGTH_SHORT).show();
+                                        Toast toast = Toast.makeText(getApplicationContext(), "You have selected the right answer, congrats.", Toast.LENGTH_SHORT);
+                                        toast.setGravity(Gravity.CENTER, 0, 0);
+                                        toast.show();
                                         noOfAnswerCorrectlySelected++;
                                         currentBtn.setBackgroundTintList(getResources().getColorStateList(R.color.green));
                                         currentBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
@@ -130,7 +138,9 @@ public class TryItOutActivity extends Activity {
                                             new FinishTopicTask().execute("https://anchantapp.herokuapp.com/contact/set/" + String.valueOf(userID) + "/" + String.valueOf(topicID));
                                         }
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "You have selected the wrong answer, please pick another one.", Toast.LENGTH_SHORT).show();
+                                        Toast toast = Toast.makeText(getApplicationContext(), "You have selected the wrong answer, please pick another one.", Toast.LENGTH_SHORT);
+                                        toast.setGravity(Gravity.CENTER, 0, 0);
+                                        toast.show();
                                     }
                                 }
                             });
@@ -184,7 +194,16 @@ public class TryItOutActivity extends Activity {
             try {
                 final JSONObject obj = new JSONObject(result);
                 if (obj.has("success")) {
-
+                    if (obj.getJSONObject("success").getInt("next") == -1) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Congrats, you have finish all subtopic in this section.", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    } else {
+                        nextTopicID = obj.getJSONObject("success").getInt("next");
+                        nextTopicTitle = obj.getJSONObject("success").getString("title");
+                        Button subtopicButton = (Button) findViewById(R.id.subtopic_btn);
+                        subtopicButton.setVisibility(View.VISIBLE);
+                    }
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -208,7 +227,10 @@ public class TryItOutActivity extends Activity {
     }
 
     public void nextSubTopicBtnClick(View view) {
-
+        Intent myIntent = new Intent(getApplicationContext(), TopicActivity.class);
+        myIntent.putExtra("TopicTitle", nextTopicTitle);
+        myIntent.putExtra("TopicID", nextTopicID);
+        startActivity(myIntent);
     }
 
     public void seeMyProgressBtnClick(View view) {
