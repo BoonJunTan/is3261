@@ -13,8 +13,8 @@
 
     <item
         android:id="@+id/action_task"
-        android:icon="@drawable/task"
-        android:title="@string/task_nav" />
+        android:icon="@drawable/progress"
+        android:title="@string/progress_nav" />
 
     <item
         android:id="@+id/action_challenge"

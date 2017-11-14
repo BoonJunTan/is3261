@@ -45,7 +45,7 @@
             android:layout_marginEnd="16dp" />
 
         <FrameLayout
-            android:id="@+id/header_footer"
+            android:id="@+id/footer_frame"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_marginLeft="0dp"
@@ -57,6 +57,7 @@
             app:layout_constraintTop_toBottomOf="@+id/header_middle">
 
             <TextView
+                android:id="@+id/footer_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

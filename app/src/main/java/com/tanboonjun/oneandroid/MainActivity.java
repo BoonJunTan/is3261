@@ -17,6 +17,7 @@ public class MainActivity extends Activity {
     private static final String SELECTED_ITEM = "arg_selected_item";
     private BottomNavigationView mBottomNav;
     private int mSelectedItem;
+
     public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
 
     @Override

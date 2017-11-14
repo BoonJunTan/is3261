@@ -141,11 +141,11 @@ public class HomeFragment extends Fragment {
                         final List<InnerData> innerData = new ArrayList<>();
 
                         // First Add Title
-                        innerData.add(new InnerData(key, -1));
+                        innerData.add(new InnerData(key, -1, false));
 
                         for (int i = 0; i < obj.getJSONObject("success").getJSONArray(key).length(); i++) {
                             JSONObject currentObject = obj.getJSONObject("success").getJSONArray(key).getJSONObject(i);
-                            innerData.add(new InnerData(currentObject.get("title").toString(), Integer.parseInt(currentObject.get("id").toString())));
+                            innerData.add(new InnerData(currentObject.get("title").toString(), Integer.parseInt(currentObject.get("id").toString()), currentObject.getBoolean("is_complete")));
                         }
 
                         outerData.add(innerData);

@@ -4,7 +4,7 @@
     <!-- Bottom Nav Bar Name -->
     <string name="home_nav">Home</string>
     <string name="courses_nav">Courses</string>
-    <string name="task_nav">Task</string>
+    <string name="progress_nav">Progress</string>
     <string name="challenge_nav">Leaderboard</string>
     <string name="profile_nav">Profile</string>
 
@@ -22,12 +22,7 @@
 
     <string name="transition_card" translatable="false">card</string>
     <string name="transition_background" translatable="false">background</string>
-    <string name="transition_avatar_border" translatable="false">avatar_border</string>
-
-    <!-- Under Home -> Details -->
-    <string name="details_task">ADD TASK</string>
-    <string name="details_close">CLOSE</string>
-    <string name="details_details">MORE INFO</string>
+    <string name="transition_avatar_border" translatable="false"></string>
 
     <!-- Under Home -> Details -> Topic -->
     <string name="topic">Topic</string>
@@ -36,10 +31,14 @@
     <string name="try_it_out_button">Try it Out</string>
     <string name="try_it_out">Try it Out</string>
 
+    <!-- Under Home -> Details -> Topic -> Try It Out -->
+    <string name="go_next_subtopic">Next Subtopic</string>
+    <string name="see_progress">See My Progress</string>
+
     <!-- Under Courses Fragment -->
     <string name="courses_message">Start by choosing a topic</string>
 
-    <!-- Under Task Fragment -->
+    <!-- Under Progress Fragment -->
     <string name="progress_message">Your Progress</string>
 
     <!-- Under Leaderboard Fragment -->

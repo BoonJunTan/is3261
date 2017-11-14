@@ -3,6 +3,7 @@ package com.tanboonjun.oneandroid.HomeItems.Inner;
 import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.tanboonjun.oneandroid.TopicActivity;
@@ -13,6 +14,9 @@ public class InnerItem extends com.ramotion.garlandview.inner.InnerItem {
     private final View mInnerLayout;
 
     public final TextView mHeader;
+
+    public TextView footerHeader;
+    public FrameLayout footerFrame;
 
     private InnerData mInnerData;
 
@@ -52,6 +56,15 @@ public class InnerItem extends com.ramotion.garlandview.inner.InnerItem {
         mInnerData = data;
 
         mHeader.setText(data.subTitle);
+
+        footerHeader = (TextView) itemView.findViewById(R.id.footer_text);
+        footerFrame = (FrameLayout) itemView.findViewById(R.id.footer_frame);
+
+        if (getItemData().completed) {
+            footerHeader.setText("Completed");
+            footerHeader.setTextColor(mInnerLayout.getContext().getResources().getColor(R.color.white));
+            footerFrame.setBackgroundResource(R.drawable.dark_gray_corners_bottom);
+        }
     }
 
 }

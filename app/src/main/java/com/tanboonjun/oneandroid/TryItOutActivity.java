@@ -29,18 +29,20 @@ import java.net.URL;
 
 public class TryItOutActivity extends Activity {
 
+    LinearLayout footerBtnLayout;
     ConstraintLayout activity_try_it_out;
-
-    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
-
+    int noOfAnswerCorrectlySelected = 0;
     int topicID;
     int userID;
+
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_try_it_out);
         activity_try_it_out = (ConstraintLayout)findViewById(R.id.activity_try_it_out);
+        footerBtnLayout = (LinearLayout) findViewById(R.id.footer_btn_layout);
 
         topicID = getIntent().getIntExtra("TopicID", -1);
 
@@ -48,6 +50,8 @@ public class TryItOutActivity extends Activity {
         userID = prefs.getInt("userId", -1);
 
         new MyAsyncTask().execute("https://anchantapp.herokuapp.com/subtopic/" + String.valueOf(userID) + "/" + String.valueOf(topicID));
+
+        footerBtnLayout.setVisibility(LinearLayout.GONE);
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -86,7 +90,9 @@ public class TryItOutActivity extends Activity {
                 if (obj.has("success")) {
                     TableLayout questions_list_table = (TableLayout) findViewById(R.id.try_it_out_table_layout);
 
-                    for (int i = 0; i < obj.getJSONObject("success").getJSONArray("questions").length(); i++) {
+                    final int noOfQuestions = obj.getJSONObject("success").getJSONArray("questions").length();
+
+                    for (int i = 0; i < noOfQuestions; i++) {
                         LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
                                 (Context.LAYOUT_INFLATER_SERVICE);
 
@@ -105,7 +111,7 @@ public class TryItOutActivity extends Activity {
                         final String answer = obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getString("correct_answer");
 
                         for (int x = 0; x < obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getJSONArray("answers").length(); x++) {
-                            Button currentBtn = new Button(getApplicationContext());
+                            final Button currentBtn = new Button(getApplicationContext());
                             final String buttonText = obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getJSONArray("answers").getString(x);
                             currentBtn.setText(buttonText);
                             currentBtn.setTextSize(13);
@@ -115,7 +121,14 @@ public class TryItOutActivity extends Activity {
                                 public void onClick(View view) {
                                     if (buttonText.equals(answer)) {
                                         Toast.makeText(getApplicationContext(), "You have selected the right answer, congrats.", Toast.LENGTH_SHORT).show();
-                                        new FinishTopicTask().execute("https://anchantapp.herokuapp.com/contact/set/" + String.valueOf(userID) + "/" + String.valueOf(topicID));
+                                        noOfAnswerCorrectlySelected++;
+                                        currentBtn.setBackgroundTintList(getResources().getColorStateList(R.color.green));
+                                        currentBtn.setTextColor(getResources().getColor(R.color.colorPrimary));
+                                        currentBtn.setEnabled(false);
+                                        if (noOfAnswerCorrectlySelected == noOfQuestions) {
+                                            footerBtnLayout.setVisibility(LinearLayout.VISIBLE);
+                                            new FinishTopicTask().execute("https://anchantapp.herokuapp.com/contact/set/" + String.valueOf(userID) + "/" + String.valueOf(topicID));
+                                        }
                                     } else {
                                         Toast.makeText(getApplicationContext(), "You have selected the wrong answer, please pick another one.", Toast.LENGTH_SHORT).show();
                                     }
@@ -171,9 +184,7 @@ public class TryItOutActivity extends Activity {
             try {
                 final JSONObject obj = new JSONObject(result);
                 if (obj.has("success")) {
-                    Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
-                    myIntent.putExtra("load_task_fragment", "task_fragment");
-                    startActivity(myIntent);
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -195,4 +206,15 @@ public class TryItOutActivity extends Activity {
         }
         return null;
     }
+
+    public void nextSubTopicBtnClick(View view) {
+
+    }
+
+    public void seeMyProgressBtnClick(View view) {
+        Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
+        myIntent.putExtra("load_task_fragment", "task_fragment");
+        startActivity(myIntent);
+    }
+
 }
