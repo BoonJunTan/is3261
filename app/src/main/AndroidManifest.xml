@@ -31,7 +31,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".TryItOutActivity" />
-        <activity android:name=".EnrollActivity"></activity>
+        <activity android:name=".EnrollActivity" />
+        <activity android:name=".RegisterActivity"></activity>
     </application>
 
 </manifest>
