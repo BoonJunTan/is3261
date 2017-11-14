@@ -34,7 +34,9 @@
             android:name=".TryItOutActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".EnrollActivity" />
-        <activity android:name=".Preview.LinearLayoutActivity"></activity>
+        <activity android:name=".Preview.LinearLayoutActivity" />
+        <activity android:name=".Preview.ConstraintLayoutActivity" />
+        <activity android:name=".Preview.RelativeLayoutActivity"></activity>
     </application>
 
 </manifest>

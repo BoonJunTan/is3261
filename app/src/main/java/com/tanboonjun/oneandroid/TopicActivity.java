@@ -9,8 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.tanboonjun.oneandroid.Preview.LinearLayoutActivity;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +26,7 @@ public class TopicActivity extends Activity {
     public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
 
     int topicID;
+    String activityName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +86,8 @@ public class TopicActivity extends Activity {
                         try_it_out_btn.setText("Completed");
                         try_it_out_btn.setBackgroundColor(getResources().getColor(R.color.gray));
                     }
+
+                    activityName = obj.getJSONObject("success").getString("activity_name");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -110,8 +111,13 @@ public class TopicActivity extends Activity {
     }
 
     public void previewClick(View view) {
-        Intent myIntent = new Intent(this, LinearLayoutActivity.class);
-        startActivity(myIntent);
+        try {
+            Class<?> c = Class.forName(activityName);
+            Intent intent = new Intent(this, c);
+            startActivity(intent);
+        } catch (ClassNotFoundException ignored) {
+
+        }
     }
 
     public void tryItOutClick(View view) {
