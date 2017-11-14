@@ -2,13 +2,16 @@ package com.tanboonjun.oneandroid;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ramotion.garlandview.TailLayoutManager;
 import com.ramotion.garlandview.TailRecyclerView;
@@ -40,7 +43,7 @@ import static android.content.Context.MODE_PRIVATE;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener{
 
     public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
 
@@ -48,11 +51,15 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    ImageButton scanBtn;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        scanBtn = (ImageButton) rootView.findViewById(R.id.scanBtn);
+        scanBtn.setOnClickListener(this);
+        return rootView;
     }
 
     @Override
@@ -95,6 +102,13 @@ public class HomeFragment extends Fragment {
         if (itemData == null) {
             return;
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent myIntent = new Intent(getActivity(), QrcodeActivity.class);
+        startActivity(myIntent);
+        Toast.makeText(getActivity(), "fewfwf", Toast.LENGTH_SHORT).show();
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
