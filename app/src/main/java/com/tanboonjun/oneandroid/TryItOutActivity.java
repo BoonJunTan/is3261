@@ -57,7 +57,7 @@ public class TryItOutActivity extends Activity {
         footerBtnLayout.setVisibility(LinearLayout.GONE);
 
         Button subtopicButton = (Button) findViewById(R.id.subtopic_btn);
-        subtopicButton.setVisibility(View.VISIBLE);
+        subtopicButton.setVisibility(View.GONE);
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
