@@ -33,7 +33,6 @@ public class TopicActivity extends Activity {
     TextToSpeech textToSpeech;
     String text;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

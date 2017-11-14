@@ -42,12 +42,9 @@ public class LeaderboardFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_leaderboard, container, false);
 
@@ -61,6 +58,7 @@ public class LeaderboardFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         new MyAsyncTask().execute("https://anchantapp.herokuapp.com/location");
         mMapView.getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -71,8 +69,6 @@ public class LeaderboardFragment extends Fragment {
                 googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
             }
         });
-
-
 
         return rootView;
     }
@@ -119,28 +115,28 @@ public class LeaderboardFragment extends Fragment {
                         if (i == 0) {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
-                                    .title("THE CHAMP")
+                                    .title("Champion")
                                     .snippet(name)
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.medalgold))
                             );
                         } else if (i == 1) {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
-                                    .title("THE FIRST LOSER")
+                                    .title("First Runner-up")
                                     .snippet(name)
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.medalsilver))
                             );
                         } else if (i == 2) {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
-                                    .title("THE POINTLESS")
+                                    .title("Second Runner-up")
                                     .snippet(name)
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.medalbronze))
                             );
                         } else {
                             googleMap.addMarker(new MarkerOptions()
                                     .position(location)
-                                    .title("THE COMMONERS")
+                                    .title("Commoners")
                                     .snippet(name)
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.nonstar))
                             );

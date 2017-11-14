@@ -34,14 +34,14 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class TaskFragment extends Fragment {
 
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
+    TableLayout task_list_table;
+    ViewGroup c;
 
     public TaskFragment() {
         // Required empty public constructor
     }
 
-    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
-    TableLayout task_list_table;
-    ViewGroup c;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -27,7 +27,7 @@ public class MainActivity extends Activity {
         SharedPreferences prefs = getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
         String username = prefs.getString("username", null);
 
-        // check if specific key has value
+        // Check if specific key has value
         if (username == null) {
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);

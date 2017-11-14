@@ -148,6 +148,4 @@ public class QrcodeActivity extends Activity {
         }
         return null;
     }
-
-
 }

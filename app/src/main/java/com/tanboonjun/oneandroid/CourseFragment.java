@@ -33,14 +33,13 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class CourseFragment extends Fragment {
 
+    List<Topic> result1 = new ArrayList<>();
+    GridView gridView;
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
 
     public CourseFragment() {
         // Required empty public constructor
     }
-
-    List<Topic> result1 = new ArrayList<>();
-    GridView gridView;
-    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

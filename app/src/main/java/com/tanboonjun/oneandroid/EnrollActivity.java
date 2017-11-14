@@ -29,6 +29,7 @@ import java.net.URI;
 import java.net.URL;
 
 public class EnrollActivity extends AppCompatActivity {
+
     TableLayout tableLayout;
     TextView topicTitleTv;
     TextView topicDescriptionTv;
@@ -36,6 +37,7 @@ public class EnrollActivity extends AppCompatActivity {
     int userId;
     int topicId;
     public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
