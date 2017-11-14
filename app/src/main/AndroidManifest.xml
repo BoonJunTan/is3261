@@ -3,6 +3,9 @@
     package="com.tanboonjun.oneandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
     <application
         android:allowBackup="true"
@@ -33,10 +36,15 @@
         <activity
             android:name=".TryItOutActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".EnrollActivity" />
-        <activity android:name=".Preview.LinearLayoutActivity" />
-        <activity android:name=".Preview.ConstraintLayoutActivity" />
+        <activity android:name=".Preview.LinearLayoutActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".Preview.ConstraintLayoutActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".Preview.RelativeLayoutActivity"></activity>
+        <activity android:name=".EnrollActivity"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

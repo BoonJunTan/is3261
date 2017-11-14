@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,12 +31,26 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         usernameEt = (EditText) findViewById(R.id.usernameEt);
         passwordEt = (EditText) findViewById(R.id.passwordEt);
+        try
+        {
+            this.getSupportActionBar().hide();
+        }
+        catch (NullPointerException e){}
     }
 
     public void loginClick(View view) {
         String username = String.valueOf(usernameEt.getText());
         String password = String.valueOf(passwordEt.getText());
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Please complete all fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
         new MyAsyncTask().execute("https://anchantapp.herokuapp.com/contact/login", username, password);
+    }
+
+    public void registerClick(View view) {
+        Intent myIntent = new Intent(this, RegisterActivity.class);
+        startActivity(myIntent);
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {

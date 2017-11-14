@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">OneAndroid</string>
+    <string name="app_name">Anchant</string>
 
     <!-- Bottom Nav Bar Name -->
     <string name="home_nav">Home</string>
@@ -47,7 +47,9 @@
     <string name="progress_message">Your Progress</string>
 
     <!-- Under Leaderboard Fragment -->
+    <string name="leaderboard_title">Leaderboard</string>
 
     <!-- Under Profile Fragment -->
-
+    <string name="profile_title">Your Profile</string>
+    <string name="profile_subtitle">Feel free to make changes</string>
 </resources>
