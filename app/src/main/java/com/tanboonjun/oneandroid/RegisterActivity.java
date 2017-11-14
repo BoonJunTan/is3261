@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     String location;
     EditText usernameRegEt;
     EditText passwordRegEt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

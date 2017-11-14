@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameEt;
     private EditText passwordEt;
     public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,10 +102,14 @@ public class LoginActivity extends AppCompatActivity {
                 if (obj.has("success")) {
                     SharedPreferences.Editor editor = getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE).edit();
                     editor.putString("username", String.valueOf(usernameEt.getText()));
-                    editor.putInt("userId", obj.getInt("success"));
+                    editor.putInt("userId", obj.getJSONObject("success").getInt("id"));
+                    editor.putString("userLocation", obj.getJSONObject("success").getString("location"));
                     editor.commit();
+                    Toast.makeText(getApplicationContext(), "Login Successfully!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "You have entered invalid username or password.", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -112,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    // from internet
+    // From Internet
     private URL convertToUrl(String urlStr) {
         try {
             URL url = new URL(urlStr);
