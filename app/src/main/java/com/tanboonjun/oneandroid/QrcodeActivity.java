@@ -2,8 +2,10 @@ package com.tanboonjun.oneandroid;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -14,19 +16,31 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
 
 public class QrcodeActivity extends Activity {
     private static final int REQUEST_CAMERA_PERMISSION = 300;
     private boolean permissionToUseCameraAccepted = false;
     private String[] permissions = {Manifest.permission.CAMERA};
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
+
     SurfaceView cameraView;
     TextView tvCodeInfo;
     BarcodeDetector barcodeDetector;
@@ -102,11 +116,9 @@ public class QrcodeActivity extends Activity {
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
-                    tvCodeInfo.post(new Runnable() {
-                        public void run() {
-                            // Call API - either to enroll to course or show course details first
-                        }
-                    });
+                    SharedPreferences prefs = getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
+                    int userId = prefs.getInt("userId", -1);
+                    new MyAsyncTask().execute(barcodes.valueAt(0).displayValue + "/" + String.valueOf(userId));
                 }
             }
         });
@@ -149,5 +161,63 @@ public class QrcodeActivity extends Activity {
         return null;
     }
 
+    public class MyAsyncTask extends AsyncTask<String, Void, String> {
+
+        public String doInBackground(String... str) {
+            URL url = convertToUrl(str[0]);
+            HttpURLConnection httpURLConnection = null;
+            int responseCode;
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            try {
+                httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.connect();
+                responseCode = httpURLConnection.getResponseCode();
+                if (responseCode == httpURLConnection.HTTP_OK) {
+                    InputStream inputStream = httpURLConnection.getInputStream();
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                    while ((line = reader.readLine())!=null) {
+                        stringBuilder.append(line);
+                    }
+                    inputStream.close();
+                }
+            } catch (Exception e) {
+                System.out.println("Error : " + e.getMessage());
+                e.printStackTrace();
+            } finally {
+                httpURLConnection.disconnect();
+            }
+            return stringBuilder.toString();
+        }
+
+        public void onPostExecute(String result) {
+            try {
+                JSONObject obj = new JSONObject(result);
+                if (obj.has("success")) {
+                    Toast.makeText(getApplicationContext(), "Successfully enrolled!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+                //Toast.makeText(getApplicationContext(), "QR Code don't exist in our database!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    // From Internet
+    private URL convertToUrl(String urlStr) {
+        try {
+            URL url = new URL(urlStr);
+            URI uri = new URI(url.getProtocol(), url.getUserInfo(),
+                    url.getHost(), url.getPort(), url.getPath(),
+                    url.getQuery(), url.getRef());
+            url = uri.toURL();
+            return url;
+        } catch ( Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

@@ -33,6 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     String location;
     EditText usernameRegEt;
     EditText passwordRegEt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +51,6 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         location = adapterView.getItemAtPosition(i).toString();
         spinner.setSelection(i);
         ((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
-        Toast.makeText(adapterView.getContext(), "Selected: " + location, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -173,9 +173,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                 if (obj.has("success")) {
                     Intent myIntent = new Intent(getApplication(), LoginActivity.class);
                     startActivity(myIntent);
-                    Toast.makeText(getApplicationContext(), "Registration is completed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Registration is completed", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "User Already exists", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "User already exists", Toast.LENGTH_SHORT).show();
                 }
 
             } catch (JSONException e) {

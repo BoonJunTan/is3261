@@ -24,6 +24,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.text.DecimalFormat;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -33,14 +34,14 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class TaskFragment extends Fragment {
 
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
+    TableLayout task_list_table;
+    ViewGroup c;
 
     public TaskFragment() {
         // Required empty public constructor
     }
 
-    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
-    TableLayout task_list_table;
-    ViewGroup c;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,7 +102,10 @@ public class TaskFragment extends Fragment {
                         titleTv.setText(currentObj.getString("title"));
                         subTitleTv.setText(currentObj.getString("title"));
                         progressBar.setProgress(currentObj.getInt("completed"));
-                        String pct = String.valueOf(currentObj.getDouble("completed")) + " %";
+
+                        DecimalFormat df = new DecimalFormat();
+                        df.setMaximumFractionDigits(2);
+                        String pct = String.valueOf(df.format(currentObj.getDouble("completed"))) + " %";
                         pctTv.setText(pct);
                         task_list_table.addView(task_list_row);
                     }
