@@ -43,11 +43,12 @@ public class EnrollActivity extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
         userId = prefs.getInt("userId", -1);
         topicId = getIntent().getExtras().getInt("topicId");
+
         boolean isEnrolled = getIntent().getExtras().getBoolean("isEnrolled");
         topicTitleTv = (TextView) findViewById(R.id.topicTitleTv);
         topicDescriptionTv = (TextView) findViewById(R.id.topicDescriptionTv);
         enrollBtn = (Button) findViewById(R.id.enrollBtn);
-        Bitmap myBitmap = QRCode.from("www.example.org").bitmap();
+        Bitmap myBitmap = QRCode.from("https://anchantapp.herokuapp.com/contact/qr/" + String.valueOf(topicId)).bitmap();
         ImageView myImage = (ImageView) findViewById(R.id.qrcodeIv);
         myImage.setImageBitmap(myBitmap);
         if (isEnrolled == false) {
