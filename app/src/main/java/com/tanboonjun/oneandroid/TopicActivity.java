@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.util.Locale;
 
 import ru.noties.markwon.Markwon;
 
@@ -27,6 +29,10 @@ public class TopicActivity extends Activity {
 
     int topicID;
     String activityName;
+    boolean speaking = false;
+    TextToSpeech textToSpeech;
+    String text;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,15 @@ public class TopicActivity extends Activity {
         int userId = prefs.getInt("userId", -1);
 
         new MyAsyncTask().execute("https://anchantapp.herokuapp.com/subtopic/" + String.valueOf(userId) + "/" + String.valueOf(topicID));
+
+        textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    textToSpeech.setLanguage(Locale.UK);
+                }
+            }
+        });
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -88,6 +103,7 @@ public class TopicActivity extends Activity {
                     }
 
                     activityName = obj.getJSONObject("success").getString("activity_name");
+                    text = obj.getJSONObject("success").getString("listen_content");
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -110,6 +126,20 @@ public class TopicActivity extends Activity {
         return null;
     }
 
+    public void listenClick(View view) {
+        Button listenBtn = (Button) findViewById(R.id.listen_button);
+        if (!speaking) {
+            speaking = true;
+            listenBtn.setText("Playing... Press to pause");
+            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        } else {
+            speaking = false;
+            listenBtn.setText("Stopped... Press to continue");
+            textToSpeech.stop();
+        }
+
+    }
+
     public void previewClick(View view) {
         try {
             Class<?> c = Class.forName(activityName);
@@ -118,6 +148,14 @@ public class TopicActivity extends Activity {
         } catch (ClassNotFoundException ignored) {
 
         }
+    }
+
+    public void onPause(){
+        if(textToSpeech !=null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
+        super.onPause();
     }
 
     public void tryItOutClick(View view) {
