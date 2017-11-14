@@ -2,16 +2,20 @@ package com.tanboonjun.oneandroid;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import net.glxn.qrgen.android.QRCode;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,6 +47,9 @@ public class EnrollActivity extends AppCompatActivity {
         topicTitleTv = (TextView) findViewById(R.id.topicTitleTv);
         topicDescriptionTv = (TextView) findViewById(R.id.topicDescriptionTv);
         enrollBtn = (Button) findViewById(R.id.enrollBtn);
+        Bitmap myBitmap = QRCode.from("www.example.org").bitmap();
+        ImageView myImage = (ImageView) findViewById(R.id.qrcodeIv);
+        myImage.setImageBitmap(myBitmap);
         if (isEnrolled == false) {
             enrollBtn.setVisibility(View.VISIBLE);
         }
