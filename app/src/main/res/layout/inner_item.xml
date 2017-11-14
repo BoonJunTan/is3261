@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/inner_item_height"
+    android:layout_gravity="center"
+    android:clickable="true"
+    app:cardCornerRadius="5dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/header_middle"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:background="@color/colorAccent"
+            android:layout_marginLeft="0dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"/>
+
+        <TextView
+            android:id="@+id/header_text_1"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:gravity="center"
+            android:maxLines="2"
+            android:textSize="@dimen/header_title_text_size"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
+
+        <FrameLayout
+            android:id="@+id/footer_frame"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+            android:background="@drawable/white_corners_bottom"
+            app:layout_constraintLeft_toLeftOf="@+id/header_middle"
+            app:layout_constraintRight_toRightOf="@+id/header_middle"
+            app:layout_constraintTop_toBottomOf="@+id/header_middle">
+
+            <TextView
+                android:id="@+id/footer_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/tap_message"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/header_footer_text_size" />
+
+        </FrameLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v7.widget.CardView>
+
+</layout>

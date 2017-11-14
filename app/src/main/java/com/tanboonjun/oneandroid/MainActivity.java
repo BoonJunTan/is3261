@@ -3,23 +3,38 @@ package com.tanboonjun.oneandroid;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 
+    // For Bottom Nav Bar
     private static final String SELECTED_ITEM = "arg_selected_item";
-
     private BottomNavigationView mBottomNav;
     private int mSelectedItem;
+
+    public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SharedPreferences prefs = getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
+        String username = prefs.getString("username", null);
+        int userId = prefs.getInt("userId", -1);
+        // check if specific key has value
+        if ( username != null) {
+            Toast.makeText(this, username + ": " + String.valueOf(userId), Toast.LENGTH_SHORT).show();
+        } else {
+            Intent myIntent = new Intent(this, LoginActivity.class);
+            startActivity(myIntent);
+        }
 
         mBottomNav = (BottomNavigationView)
                 findViewById(R.id.bottom_navigation);
@@ -33,14 +48,13 @@ public class MainActivity extends Activity {
                     }
                 });
 
-        MenuItem selectedItem;
-        if (savedInstanceState != null) {
-            mSelectedItem = savedInstanceState.getInt(SELECTED_ITEM, 0);
-            selectedItem = mBottomNav.getMenu().findItem(mSelectedItem);
+        if (getIntent().getStringExtra("load_task_fragment") != null) {
+            selectFragment(mBottomNav.getMenu().getItem(2));
+            mBottomNav.getMenu().getItem(2).setChecked(true);
         } else {
-            selectedItem = mBottomNav.getMenu().getItem(0);
+            selectFragment(mBottomNav.getMenu().getItem(0));
+            mBottomNav.getMenu().getItem(0).setChecked(true);
         }
-        selectFragment(selectedItem);
     }
 
     @Override
@@ -66,6 +80,9 @@ public class MainActivity extends Activity {
             case R.id.action_home:
                 frag = new HomeFragment();
                 break;
+            case R.id.action_courses:
+                frag = new CourseFragment();
+                break;
             case R.id.action_task:
                 frag = new TaskFragment();
                 break;
@@ -85,9 +102,6 @@ public class MainActivity extends Activity {
             MenuItem menuItem = mBottomNav.getMenu().getItem(i);
             menuItem.setChecked(menuItem.getItemId() == item.getItemId());
         }
-
-        // Not sure why this is needed for a very weird bug when app launched
-        mBottomNav.getMenu().getItem(0).setChecked(true);
 
         if (frag != null) {
             FragmentTransaction ft = getFragmentManager().beginTransaction();

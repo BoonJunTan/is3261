@@ -1,17 +1,59 @@
 <resources>
-    <string name="app_name">OneAndroid</string>
+    <string name="app_name">Anchant</string>
 
+    <!-- Bottom Nav Bar Name -->
     <string name="home_nav">Home</string>
-    <string name="task_nav">Task</string>
+    <string name="courses_nav">Courses</string>
+    <string name="progress_nav">Progress</string>
     <string name="challenge_nav">Leaderboard</string>
     <string name="profile_nav">Profile</string>
 
+    <!-- Temporary Fragment Text -->
     <string name="home_fragment">Hello Home fragment</string>
     <string name="task_fragment">Hello Task fragment</string>
     <string name="leaderboard_fragment">Hello Leaderboard fragment</string>
     <string name="profile_fragment">Hello Profile fragment</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Under Home Fragment -->
+    <string name="welcome_text">Hi again Dyllan Tan!</string>
+    <string name="todo_message">What do you want to know today?</string>
+    <string name="scroll_down_message">Scroll Down for Sub-Topic</string>
+    <string name="tap_message">Tap to find out more!</string>
 
+    <string name="transition_card" translatable="false">card</string>
+    <string name="transition_background" translatable="false">background</string>
+    <string name="transition_avatar_border" translatable="false"></string>
+
+    <!-- Under Home -> Details -> Topic -->
+    <string name="scan_qr_code">Please scan the QR code on the selected enrolled course.</string>
+
+    <!-- Under Home -> Details -> Topic -->
+    <string name="topic">Topic</string>
+    <string name="topic_title">Topic Overview</string>
+    <string name="preview_button">Preview</string>
+    <string name="try_it_out_button">Try it Out</string>
+    <string name="listen_button">Listen to text</string>
+    <string name="try_it_out">Try it Out</string>
+
+    <!-- Under Home -> Details -> Topic -> Try It Out -->
+    <string name="go_next_subtopic">Next Subtopic</string>
+    <string name="see_progress">See My Progress</string>
+
+    <!-- Under Home -> Details -> Topic -> Try It Out -> Preview -->
+    <string name="preview_linear_layout">Linear Layout</string>
+    <string name="preview_relative_layout">Relative Layout</string>
+    <string name="preview_constraint_layout">Constraint Layout</string>
+
+    <!-- Under Courses Fragment -->
+    <string name="courses_message">Start by choosing a topic</string>
+
+    <!-- Under Progress Fragment -->
+    <string name="progress_message">Your Progress</string>
+
+    <!-- Under Leaderboard Fragment -->
+    <string name="leaderboard_title">Leaderboard</string>
+
+    <!-- Under Profile Fragment -->
+    <string name="profile_title">Your Profile</string>
+    <string name="profile_subtitle">Feel free to make changes</string>
 </resources>

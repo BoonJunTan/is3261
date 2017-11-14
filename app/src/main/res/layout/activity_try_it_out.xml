@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:id="@+id/activity_try_it_out"
+    tools:context="com.tanboonjun.oneandroid.TryItOutActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/try_it_out_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="@string/try_it_out"
+                android:textColor="@color/yellow"
+                android:textSize="@dimen/header_footer_text_size"
+                android:gravity="center"/>
+
+            <TableLayout
+                android:id="@+id/try_it_out_table_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+            </TableLayout>
+
+            <LinearLayout
+                android:id="@+id/footer_btn_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="13sp"
+                    android:textAllCaps="false"
+                    android:text="@string/see_progress"
+                    android:textColor="@color/white"
+                    android:background="@color/header_green"
+                    android:onClick="seeMyProgressBtnClick"/>
+
+                <Button
+                    android:id="@+id/subtopic_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="13sp"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/go_next_subtopic"
+                    android:textColor="@color/white"
+                    android:background="@color/colorAccent"
+                    android:onClick="nextSubTopicBtnClick"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
