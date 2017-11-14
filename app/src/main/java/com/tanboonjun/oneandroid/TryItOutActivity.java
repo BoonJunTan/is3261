@@ -28,6 +28,8 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
+import ru.noties.markwon.Markwon;
+
 public class TryItOutActivity extends Activity {
 
     LinearLayout footerBtnLayout;
@@ -95,6 +97,7 @@ public class TryItOutActivity extends Activity {
                 final JSONObject obj = new JSONObject(result);
                 if (obj.has("success")) {
                     TableLayout questions_list_table = (TableLayout) findViewById(R.id.try_it_out_table_layout);
+                    ViewGroup.LayoutParams params = questions_list_table.getLayoutParams();
 
                     final int noOfQuestions = obj.getJSONObject("success").getJSONArray("questions").length();
 
@@ -107,8 +110,7 @@ public class TryItOutActivity extends Activity {
                         View taskRowView = inflater.inflate(R.layout.try_it_out_table_row, viewGroup, false);
                         TableRow task_list_row = (TableRow) taskRowView.findViewById(R.id.try_it_out_table_row);
 
-                        TextView questionTV = (TextView) task_list_row.findViewById(R.id.markdown_question_tv);
-                        questionTV.setText(obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getString("title"));
+                        Markwon.setMarkdown((TextView) task_list_row.findViewById(R.id.markdown_question_tv), obj.getJSONObject("success").getJSONArray("questions").getJSONObject(i).getString("title"));
 
                         questions_list_table.addView(task_list_row);
 
