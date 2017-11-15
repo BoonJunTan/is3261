@@ -16,7 +16,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -82,7 +81,7 @@ public class QrcodeActivity extends Activity {
 
         barcodeDetector = new BarcodeDetector.Builder(this).setBarcodeFormats(Barcode.QR_CODE).build();
 
-        cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640, 480).build();
+        cameraSource = new CameraSource.Builder(this, barcodeDetector).setRequestedPreviewSize(640, 480).setAutoFocusEnabled(true).build();
 
         cameraView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
@@ -195,12 +194,10 @@ public class QrcodeActivity extends Activity {
             try {
                 JSONObject obj = new JSONObject(result);
                 if (obj.has("success")) {
-                    Toast.makeText(getApplicationContext(), "Successfully enrolled!", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                //Toast.makeText(getApplicationContext(), "QR Code don't exist in our database!", Toast.LENGTH_SHORT).show();
             }
         }
     }

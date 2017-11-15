@@ -37,6 +37,7 @@ public class TaskFragment extends Fragment {
     public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
     TableLayout task_list_table;
     ViewGroup c;
+    MyAsyncTask myAsyncTask;
 
     public TaskFragment() {
         // Required empty public constructor
@@ -50,9 +51,16 @@ public class TaskFragment extends Fragment {
         task_list_table = (TableLayout) view.findViewById(R.id.task_table_layout);
         SharedPreferences prefs = getContext().getSharedPreferences(MY_SHAREDPREFERENCE, MODE_PRIVATE);
         int userId = prefs.getInt("userId", -1);
-        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/contact/progress/" + String.valueOf(userId));
+        myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute("https://anchantapp.herokuapp.com/contact/progress/" + String.valueOf(userId));
 
         return view;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        myAsyncTask.cancel(true);
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {
@@ -64,6 +72,7 @@ public class TaskFragment extends Fragment {
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             try {
+                Thread.sleep(5);
                 httpURLConnection = (HttpURLConnection)url.openConnection();
                 httpURLConnection.setRequestMethod("GET");
                 httpURLConnection.connect();

@@ -83,7 +83,6 @@
                 app:layout_constraintVertical_bias="0.222"
                 app:srcCompat="@drawable/official_logo" />
 
-
         </android.support.constraint.ConstraintLayout>
 
         <LinearLayout

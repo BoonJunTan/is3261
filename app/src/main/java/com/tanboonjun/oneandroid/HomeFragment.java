@@ -45,6 +45,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class HomeFragment extends Fragment implements View.OnClickListener{
 
     public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
+    MyAsyncTask myAsyncTask;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -76,7 +77,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         TextView welcomeText = (TextView) getActivity().findViewById(R.id.welcome_tv);
         welcomeText.setText("Hi again " + userName + "!");
 
-        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/topic/" + String.valueOf(userId));
+        myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute("https://anchantapp.herokuapp.com/topic/" + String.valueOf(userId));
         EventBus.getDefault().register(this);
     }
 
@@ -84,6 +86,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     public void onStop() {
         super.onStop();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (myAsyncTask != null) {
+            myAsyncTask.cancel(true);
+        }
     }
 
     private void initRecyclerView(List<List<InnerData>> data) {

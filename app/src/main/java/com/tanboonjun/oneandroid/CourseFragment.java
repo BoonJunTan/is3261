@@ -36,6 +36,7 @@ public class CourseFragment extends Fragment {
     List<Topic> result1 = new ArrayList<>();
     GridView gridView;
     public static final String MY_SHAREDPREFERENCE = "MySharedPreference";
+    MyAsyncTask myAsyncTask;
 
     public CourseFragment() {
         // Required empty public constructor
@@ -60,8 +61,15 @@ public class CourseFragment extends Fragment {
                 startActivity(myIntent);
             }
         });
-        new MyAsyncTask().execute("https://anchantapp.herokuapp.com/topic/all/" + String.valueOf(userId));
+        myAsyncTask = new MyAsyncTask();
+        myAsyncTask.execute("https://anchantapp.herokuapp.com/topic/all/" + String.valueOf(userId));
         return rootView;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        myAsyncTask.cancel(true);
     }
 
     public class MyAsyncTask extends AsyncTask<String, Void, String> {

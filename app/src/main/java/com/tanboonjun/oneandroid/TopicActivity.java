@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -102,6 +103,12 @@ public class TopicActivity extends Activity {
                     }
 
                     activityName = obj.getJSONObject("success").getString("activity_name");
+
+                    if (TextUtils.isEmpty(activityName)) {
+                        Button preview_btn = (Button) findViewById(R.id.preview_button);
+                        preview_btn.setVisibility(View.GONE);
+                    }
+
                     text = obj.getJSONObject("success").getString("listen_content");
                 }
             } catch (JSONException e) {

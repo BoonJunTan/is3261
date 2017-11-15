@@ -55,6 +55,9 @@
         <activity
             android:name=".QrcodeActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".Preview.ZoomMapActivity" />
+        <activity android:name=".Preview.GetStartedMapActivity" />
+        <activity android:name=".Preview.MapMarkerActivity"></activity>
         <activity android:name=".ScoreboardActivity"></activity>
     </application>
 
