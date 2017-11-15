@@ -2,6 +2,7 @@ package com.tanboonjun.oneandroid;
 
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -143,6 +145,16 @@ public class LeaderboardFragment extends Fragment {
                         }
 
                     }
+                    googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+                        @Override
+                        public void onInfoWindowClick(Marker marker) {
+                            String location = marker.getSnippet();
+                            Intent myIntent = new Intent(getActivity(), ScoreboardActivity.class);
+                            myIntent.putExtra("location", location);
+                            startActivity(myIntent);
+                        }
+                    });
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
