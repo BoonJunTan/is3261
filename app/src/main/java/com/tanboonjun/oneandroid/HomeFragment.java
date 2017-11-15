@@ -91,7 +91,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onDestroy() {
         super.onDestroy();
-        myAsyncTask.cancel(true);
+        if (myAsyncTask != null) {
+            myAsyncTask.cancel(true);
+        }
     }
 
     private void initRecyclerView(List<List<InnerData>> data) {
